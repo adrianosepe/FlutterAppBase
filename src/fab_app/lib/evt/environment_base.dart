@@ -33,6 +33,8 @@ abstract class EnvironmentBase {
   bool inSession() => _session != null;
 
   ISession get session => _session;
+  @protected
+  set session(value) => _session = value;
 
   ESessionState get sessionState => _sessionState;
 

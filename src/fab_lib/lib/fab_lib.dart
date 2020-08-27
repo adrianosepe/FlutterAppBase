@@ -18,6 +18,7 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart' as intl;
 
 part 'common/async/lazy.dart';
+part 'common/async/lazy_async.dart';
 part 'common/store/key_value_store.dart';
 
 part 'events/delegates.dart';
@@ -47,4 +48,3 @@ part 'ui/normalize_presentable.dart';
 
 part 'widgets/dy_stateful_widget_factory.dart';
 part 'widgets/rounded_input.dart';
-

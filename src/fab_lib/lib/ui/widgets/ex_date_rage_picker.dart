@@ -962,16 +962,7 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
       case TargetPlatform.fuchsia:
         HapticFeedback.vibrate();
         break;
-      case TargetPlatform.iOS:
-        break;
-      case TargetPlatform.linux:
-        // TODO: Handle this case.
-        break;
-      case TargetPlatform.macOS:
-        // TODO: Handle this case.
-        break;
-      case TargetPlatform.windows:
-        // TODO: Handle this case.
+      default:
         break;
     }
   }
@@ -1068,11 +1059,11 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
       data: null,
       child: ButtonBar(
         children: <Widget>[
-          FlatButton(
+          TextButton(
             child: Text(localizations.cancelButtonLabel),
             onPressed: _handleCancel,
           ),
-          FlatButton(
+          TextButton(
             child: Text(localizations.okButtonLabel),
             onPressed: _handleOk,
           ),

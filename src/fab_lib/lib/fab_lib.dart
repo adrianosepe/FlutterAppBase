@@ -42,9 +42,9 @@ part 'ui/models/presentable_item.dart';
 part 'ui/widgets/ex_date_rage_picker.dart';
 part 'ui/widgets/ex_text.dart';
 
-part 'ui/async_button.dart';
+part 'ui/widgets/async_button.dart';
 part 'ui/message_dialog.dart';
 part 'ui/normalize_presentable.dart';
 
-part 'widgets/dy_stateful_widget_factory.dart';
-part 'widgets/rounded_input.dart';
+part 'ui/widgets/dy_stateful_widget_factory.dart';
+part 'ui/widgets/rounded_input.dart';

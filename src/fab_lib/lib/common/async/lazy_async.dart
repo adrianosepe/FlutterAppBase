@@ -4,15 +4,13 @@ class LazyAsync<T> {
   final Func<Future<T>> _func;
 
   bool _isEvaluated = false;
-  T _value;
+  T? _value;
 
   LazyAsync(this._func);
 
-  Future<T> get value async {
+  Future<T?> get value async {
     if (!_isEvaluated) {
-      if (_func != null) {
-        _value = await _func();
-      }
+      _value = await _func();
 
       _isEvaluated = true;
     }

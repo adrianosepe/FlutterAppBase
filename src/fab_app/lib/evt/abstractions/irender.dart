@@ -14,8 +14,8 @@ abstract class IRender {
   Widget renderDropdown<T>({
     required BuildContext context,
     required IProperty<T> property,
+    required IProperty<List<T>> datasource,
     String? hintText,
-    required Map<T, String> options,
     required AsyncSnapshot snapshot,
   });
 

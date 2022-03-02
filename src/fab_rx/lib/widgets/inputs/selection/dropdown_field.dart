@@ -1,13 +1,13 @@
 part of fab_rx;
 
 class UiDropdownField<T> extends UiPrimitiveField<T> {
-  final Map<T, String> options;
+  final IProperty<List<T>> datasource;
   final String? hintText;
 
   const UiDropdownField({
     Key? key,
     required property,
-    required this.options,
+    required this.datasource,
     this.hintText,
   }) : super(
           key: key,
@@ -19,8 +19,8 @@ class UiDropdownField<T> extends UiPrimitiveField<T> {
     return ui.render.renderDropdown<T>(
       context: context,
       property: property,
+      datasource: datasource,
       hintText: hintText,
-      options: options,
       snapshot: snapshot,
     );
   }

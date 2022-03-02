@@ -36,45 +36,49 @@ class BaseRender extends BaseContext implements IRender {
   Widget renderDropdown<T>({
     required BuildContext context,
     required IProperty<T> property,
+    required IProperty<List<T>> datasource,
     String? hintText,
-    required Map<T, String> options,
     required AsyncSnapshot snapshot,
   }) {
     const TextStyle style = TextStyle(fontSize: 20.0);
 
-    final items = options.entries
-        .map(
-          (entry) => DropdownMenuItem<T>(
-            value: entry.key,
-            child: Text(
-              entry.value,
-              style: style,
-            ),
-          ),
-        )
-        .toList();
+    return StreamBuilder<List<T>?>(
+        stream: datasource.stream,
+        builder: (context, snapshotDS) {
+          final items = (snapshotDS.data ?? [])
+              .map(
+                (entry) => DropdownMenuItem<T>(
+                  value: entry,
+                  child: Text(
+                    entry.toString(),
+                    style: style,
+                  ),
+                ),
+              )
+              .toList();
 
-    return UiRoudedContainer(
-      child: Row(
-        children: [
-          SizedBox(
-            width: 10,
-          ),
-          Expanded(
-            child: DropdownButton<T>(
-              value: snapshot.data,
-              onChanged: property.setter,
-              iconSize: 48,
-              items: items,
-              isExpanded: true,
+          return UiRoudedContainer(
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: DropdownButton<T>(
+                    value: snapshot.data,
+                    onChanged: property.setter,
+                    iconSize: 48,
+                    items: items,
+                    isExpanded: true,
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+              ],
             ),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-        ],
-      ),
-    );
+          );
+        });
   }
 
   @override
@@ -87,10 +91,11 @@ class BaseRender extends BaseContext implements IRender {
   }) {
     return StreamBuilder<List<T>?>(
         stream: datasource.stream,
-        builder: (context, snapshot) {
+        builder: (context, snapshotDS) {
           return DropdownSearch<T>(
+            selectedItem: snapshot.data,
             onChanged: property.setter,
-            items: snapshot.data ?? [],
+            items: snapshotDS.data ?? [],
             focusNode: HandleFocusNode.handle(isReadOnly: property.isReadOnly),
             dropdownSearchBaseStyle: const TextStyle(fontSize: 20),
             dropdownSearchDecoration: InputDecoration(

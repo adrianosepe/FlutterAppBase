@@ -1,16 +1,14 @@
 part of fab_rx;
 
 class UiSelectorField<T> extends UiPrimitiveField<T> {
-  final String? hintText;
-  final String placeholder;
   final IProperty<List<T>> datasource;
+  final String? hintText;
 
   const UiSelectorField({
     Key? key,
     required property,
     required this.datasource,
     this.hintText,
-    this.placeholder = 'Selecione...',
   }) : super(
           key: key,
           property: property,

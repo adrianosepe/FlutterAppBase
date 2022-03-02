@@ -6,9 +6,9 @@ class UiZipcodeField extends UiPrimitiveField<String> {
   final TextEditingController controller = TextEditingController();
 
   UiZipcodeField({
+    Key? key,
     required property,
     this.hintText,
-    Key? key,
   }) : super(
           key: key,
           property: property,

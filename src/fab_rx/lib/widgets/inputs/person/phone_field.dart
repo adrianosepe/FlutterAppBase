@@ -7,10 +7,10 @@ class UiPhoneField extends UiPrimitiveField<String> {
   final TextEditingController controller = TextEditingController();
 
   UiPhoneField({
+    Key? key,
     required property,
     required this.hintText,
     this.isCellphone = false,
-    Key? key,
   }) : super(
           key: key,
           property: property,

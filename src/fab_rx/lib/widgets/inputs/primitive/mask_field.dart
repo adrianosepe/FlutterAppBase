@@ -7,10 +7,10 @@ class UiMaskField extends UiPrimitiveField<String> {
   final TextEditingController controller = TextEditingController();
 
   UiMaskField({
+    Key? key,
     required property,
     required this.mask,
     this.hintText,
-    Key? key,
   }) : super(
           key: key,
           property: property,

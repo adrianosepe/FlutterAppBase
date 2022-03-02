@@ -1,15 +1,16 @@
 part of fab_rx;
 
 class UiDocField extends UiPrimitiveField<String> {
-  final String hintText;
-  final EDocType docType;
   final TextEditingController controller = TextEditingController();
 
+  final EDocType docType;
+  final String? hintText;
+
   UiDocField({
-    required property,
-    required this.hintText,
-    required this.docType,
     Key? key,
+    required property,
+    required this.docType,
+    this.hintText,
   }) : super(
           key: key,
           property: property,

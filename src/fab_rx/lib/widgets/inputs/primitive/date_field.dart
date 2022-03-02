@@ -5,9 +5,9 @@ class UiDateField extends UiPrimitiveField<String> {
   final TextEditingController controller = TextEditingController();
 
   UiDateField({
+    Key? key,
     required property,
     this.hintText,
-    Key? key,
   }) : super(
           key: key,
           property: property,

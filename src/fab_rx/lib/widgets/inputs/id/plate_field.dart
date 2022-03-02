@@ -1,14 +1,14 @@
 part of fab_rx;
 
 class UiPlateField extends UiPrimitiveField<String> {
-  final String? hintText;
-
   final TextEditingController controller = TextEditingController();
 
+  final String? hintText;
+
   UiPlateField({
+    Key? key,
     required property,
     this.hintText,
-    Key? key,
   }) : super(
           key: key,
           property: property,

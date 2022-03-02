@@ -4,8 +4,8 @@ class UiRoudedContainer extends UiView {
   final Widget child;
 
   UiRoudedContainer({
-    required this.child,
     Key? key,
+    required this.child,
   }) : super(key: key);
 
   @override

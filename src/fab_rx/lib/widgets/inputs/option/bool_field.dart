@@ -4,9 +4,9 @@ class UiBoolField extends UiPrimitiveField<bool> {
   final String hintText;
 
   const UiBoolField({
+    Key? key,
     required property,
     required this.hintText,
-    Key? key,
   }) : super(
           key: key,
           property: property,

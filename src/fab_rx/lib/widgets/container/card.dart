@@ -7,11 +7,11 @@ class UiCard extends UiView {
   final EdgeInsetsGeometry? padding;
 
   UiCard({
+    Key? key,
     required this.child,
     this.color,
     this.margin,
     this.padding,
-    Key? key,
   }) : super(key: key);
 
   @override

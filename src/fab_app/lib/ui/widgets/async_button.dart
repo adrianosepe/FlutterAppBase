@@ -11,13 +11,13 @@ class UiAsyncButton<TData> extends StatefulWidget {
   final Color? textColor;
 
   UiAsyncButton({
+    Key? key,
     required this.onExecute,
     this.onSuccess,
     this.onFail,
     this.child,
     this.color,
     this.textColor,
-    Key? key,
   }) : super(key: key);
 
   @override

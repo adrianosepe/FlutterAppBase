@@ -8,11 +8,11 @@ class UiStringField extends UiPrimitiveField<String> {
   final TextInputType? keyboardType;
 
   UiStringField({
+    Key? key,
     required property,
     this.hintText,
     this.keyboardType,
     this.inputFormatters,
-    Key? key,
   }) : super(
           key: key,
           property: property,

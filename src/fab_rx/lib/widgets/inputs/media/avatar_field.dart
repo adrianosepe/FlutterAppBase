@@ -4,9 +4,9 @@ class UiAvatarField extends UiField<String, ImageProperty> {
   final String? hintText;
 
   UiAvatarField({
+    Key? key,
     required ImageProperty property,
     this.hintText,
-    Key? key,
   }) : super(
           key: key,
           property: property,

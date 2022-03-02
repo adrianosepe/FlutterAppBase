@@ -4,8 +4,8 @@ class UiContainer extends UiView {
   final Widget child;
 
   const UiContainer({
-    required this.child,
     Key? key,
+    required this.child,
   }) : super(key: key);
 
   @override

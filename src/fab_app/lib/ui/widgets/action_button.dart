@@ -6,10 +6,10 @@ class UiButton extends UiView {
   final EAppAction action;
 
   UiButton({
+    Key? key,
     required this.text,
     required this.onPressed,
     this.action = EAppAction.Primary,
-    Key? key,
   }) : super(key: key);
 
   @override

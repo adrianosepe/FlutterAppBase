@@ -4,8 +4,8 @@ abstract class UiField<T, TProp extends Property<T>> extends UiView {
   final TProp property;
 
   const UiField({
-    required this.property,
     Key? key,
+    required this.property,
   });
 
   @override

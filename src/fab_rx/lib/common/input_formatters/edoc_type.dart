@@ -4,5 +4,6 @@ enum EDocType {
   Cpf,
   Cnpj,
   Rg,
+  InscricaoEstadual,
   Cnh,
 }

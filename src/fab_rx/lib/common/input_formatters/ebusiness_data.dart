@@ -4,6 +4,7 @@ enum EBusinessData {
   Cpf,
   Cnpj,
   Rg,
+  InscricaoEstadual,
   Cnh,
   Plate,
   Phone,

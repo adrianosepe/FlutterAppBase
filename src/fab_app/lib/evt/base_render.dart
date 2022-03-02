@@ -22,7 +22,7 @@ class BaseRender extends BaseContext implements IRender {
       obscureText: false,
       style: TextStyle(fontSize: 20),
       decoration: InputDecoration(
-        labelText: hintText,
+        labelText: hintText ?? property.hint,
         errorText: snapshot.error?.toString(),
         contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         border: OutlineInputBorder(
@@ -49,7 +49,7 @@ class BaseRender extends BaseContext implements IRender {
             focusNode: HandleFocusNode.handle(isReadOnly: property.isReadOnly),
             dropdownSearchBaseStyle: const TextStyle(fontSize: 20),
             dropdownSearchDecoration: InputDecoration(
-              labelText: hintText,
+              labelText: hintText ?? property.hint,
               errorText: snapshot.error?.toString(),
               contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
               border: OutlineInputBorder(
@@ -64,14 +64,14 @@ class BaseRender extends BaseContext implements IRender {
   Widget renderSwitch({
     required BuildContext context,
     required IProperty<bool> property,
-    required String hintText,
+    String? hintText,
     required AsyncSnapshot<bool?> snapshot,
   }) {
     return SwitchListTile(
       value: snapshot.data ?? false,
       onChanged: property.setter,
       title: Text(
-        hintText,
+        hintText ?? property.hint ?? XString.empty,
         style: const TextStyle(
           fontWeight: FontWeight.bold,
           color: Colors.red,

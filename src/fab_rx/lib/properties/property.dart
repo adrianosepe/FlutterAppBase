@@ -6,8 +6,11 @@ class Property<TValue> implements IProperty<TValue> {
 
   final bool isRequired;
 
+  final String? hint;
+
   Property({
     TValue? value,
+    this.hint,
     this.isRequired = false,
     this.isReadOnly = false,
     this.transformer,

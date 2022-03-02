@@ -20,6 +20,7 @@ part 'blocs/bloc_provider.dart';
 part 'blocs/bloc.dart';
 part 'blocs/form.dart';
 
+part 'common/input_formatters/edoc_type.dart';
 part 'common/input_formatters/ebusiness_data.dart';
 part 'common/input_formatters/mask_text_input_factory.dart';
 part 'common/input_formatters/mask_text_input_formatter.dart';

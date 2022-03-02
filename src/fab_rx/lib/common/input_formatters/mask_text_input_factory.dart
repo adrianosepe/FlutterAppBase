@@ -5,8 +5,8 @@ class MaskTextInputFactory {
   static final regJustLetters = RegExp(r'[a-zA-Z]');
   static final regLettersAndNumbers = RegExp(r'[0-9a-zA-Z]');
 
-  static TextInputFormatter create(EBusinessData docType) {
-    switch (docType) {
+  static TextInputFormatter create(EBusinessData businessData) {
+    switch (businessData) {
       case EBusinessData.Cpf:
         return MaskTextInputFormatter(mask: '###.###.###-##', filter: {"#": regJustNumbers});
       case EBusinessData.Cnpj:
@@ -32,6 +32,8 @@ class MaskTextInputFactory {
         throw Exception('Invalid EBusinessData for creation correctly TextInputFormatter');
     }
   }
+
+  static TextInputFormatter createForDocType(EDocType docType) => create(EBusinessData.values.firstWhere((e) => e.name == docType.name));
 
   static TextInputFormatter createCustom(String mask) {
     return MaskTextInputFormatter(mask: mask, filter: {

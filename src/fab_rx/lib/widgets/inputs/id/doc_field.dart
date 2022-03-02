@@ -2,7 +2,7 @@ part of fab_rx;
 
 class UiDocField extends UiPrimitiveField<String> {
   final String hintText;
-  final EBusinessData docType;
+  final EDocType docType;
   final TextEditingController controller = TextEditingController();
 
   UiDocField({
@@ -25,7 +25,7 @@ class UiDocField extends UiPrimitiveField<String> {
       hintText: hintText,
       controller: controller,
       inputFormatters: [
-        MaskTextInputFactory.create(docType),
+        MaskTextInputFactory.createForDocType(docType),
       ],
       keyboardType: TextInputType.number,
       snapshot: snapshot,

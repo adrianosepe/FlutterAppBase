@@ -33,6 +33,51 @@ class BaseRender extends BaseContext implements IRender {
   }
 
   @override
+  Widget renderDropdown<T>({
+    required BuildContext context,
+    required IProperty<T> property,
+    String? hintText,
+    required Map<T, String> options,
+    required AsyncSnapshot snapshot,
+  }) {
+    const TextStyle style = TextStyle(fontSize: 20.0);
+
+    final items = options.entries
+        .map(
+          (entry) => DropdownMenuItem<T>(
+            value: entry.key,
+            child: Text(
+              entry.value,
+              style: style,
+            ),
+          ),
+        )
+        .toList();
+
+    return UiRoudedContainer(
+      child: Row(
+        children: [
+          SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            child: DropdownButton<T>(
+              value: snapshot.data,
+              onChanged: property.setter,
+              iconSize: 48,
+              items: items,
+              isExpanded: true,
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
   Widget renderSelector<T>({
     required BuildContext context,
     required IProperty<T> property,

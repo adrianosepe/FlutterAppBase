@@ -11,6 +11,14 @@ abstract class IRender {
     required AsyncSnapshot<String?> snapshot,
   });
 
+  Widget renderDropdown<T>({
+    required BuildContext context,
+    required IProperty<T> property,
+    String? hintText,
+    required Map<T, String> options,
+    required AsyncSnapshot snapshot,
+  });
+
   Widget renderSelector<T>({
     required BuildContext context,
     required IProperty<T> property,

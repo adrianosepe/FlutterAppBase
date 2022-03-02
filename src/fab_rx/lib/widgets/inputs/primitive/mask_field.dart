@@ -1,10 +1,10 @@
 part of fab_rx;
 
 class UiMaskField extends UiPrimitiveField<String> {
+  final TextEditingController controller = TextEditingController();
+
   final String? hintText;
   final String mask;
-
-  final TextEditingController controller = TextEditingController();
 
   UiMaskField({
     Key? key,

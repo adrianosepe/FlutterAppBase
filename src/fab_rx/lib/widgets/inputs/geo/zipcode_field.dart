@@ -1,9 +1,9 @@
 part of fab_rx;
 
 class UiZipcodeField extends UiPrimitiveField<String> {
-  final String? hintText;
-
   final TextEditingController controller = TextEditingController();
+
+  final String? hintText;
 
   UiZipcodeField({
     Key? key,

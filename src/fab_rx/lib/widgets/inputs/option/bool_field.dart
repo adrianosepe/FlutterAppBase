@@ -1,12 +1,12 @@
 part of fab_rx;
 
 class UiBoolField extends UiPrimitiveField<bool> {
-  final String hintText;
+  final String? hintText;
 
   const UiBoolField({
     Key? key,
     required property,
-    required this.hintText,
+    this.hintText,
   }) : super(
           key: key,
           property: property,

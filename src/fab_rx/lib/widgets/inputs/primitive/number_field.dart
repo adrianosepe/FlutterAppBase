@@ -1,10 +1,11 @@
 part of fab_rx;
 
 class UiNumberField extends UiPrimitiveField<String> {
+  final TextEditingController controller = TextEditingController();
+
   final String? hintText;
   final bool isCurrency;
   final List<TextInputFormatter>? inputFormatters;
-  final TextEditingController controller = TextEditingController();
 
   UiNumberField({
     Key? key,

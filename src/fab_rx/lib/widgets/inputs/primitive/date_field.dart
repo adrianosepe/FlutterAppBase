@@ -1,8 +1,9 @@
 part of fab_rx;
 
 class UiDateField extends UiPrimitiveField<String> {
-  final String? hintText;
   final TextEditingController controller = TextEditingController();
+
+  final String? hintText;
 
   UiDateField({
     Key? key,

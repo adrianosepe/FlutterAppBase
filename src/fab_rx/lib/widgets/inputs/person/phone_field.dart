@@ -1,15 +1,15 @@
 part of fab_rx;
 
 class UiPhoneField extends UiPrimitiveField<String> {
-  final String hintText;
-  final bool isCellphone;
-
   final TextEditingController controller = TextEditingController();
+
+  final String? hintText;
+  final bool isCellphone;
 
   UiPhoneField({
     Key? key,
     required property,
-    required this.hintText,
+    this.hintText,
     this.isCellphone = false,
   }) : super(
           key: key,

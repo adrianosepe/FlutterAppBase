@@ -30,7 +30,7 @@ abstract class IRender {
   Widget renderSwitch({
     required BuildContext context,
     required IProperty<bool> property,
-    required String hintText,
+    required String? hintText,
     required AsyncSnapshot<bool?> snapshot,
   });
 

@@ -1,7 +1,12 @@
 part of fab_app;
 
 class MessageDialog {
-  static Future<void> alert(BuildContext context, String message, {String title = 'Atenção', List? details}) async {
+  static Future<void> alert(
+    BuildContext context,
+    String message, {
+    String title = 'Atenção',
+    List? details,
+  }) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -24,9 +29,15 @@ class MessageDialog {
     );
   }
 
-  static Future<bool?> question(BuildContext context, String message,
-      {String title = 'Dúvida?', String cancelBtnText = 'Cancelar', String confirmBtnText = 'Continuar', List? details}) async {
-    return await showDialog<bool>(
+  static Future<bool> question(
+    BuildContext context,
+    String message, {
+    String title = 'Dúvida?',
+    String cancelBtnText = 'Cancelar',
+    String confirmBtnText = 'Continuar',
+    List? details,
+  }) async {
+    final result = await showDialog<bool>(
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
@@ -50,9 +61,43 @@ class MessageDialog {
         );
       },
     );
+
+    return result ?? false;
   }
 
-  static Future<bool?> toast(String message, {EToast length = EToast.LENGTH_LONG}) {
+  static Future<void> information(
+    BuildContext context,
+    String message, {
+    String title = 'Informação',
+    String okBtnText = 'Cancelar',
+    List? details,
+  }) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: _createMessageContent(context, message, details),
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text(okBtnText),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  static Future<bool?> toast(
+    String message, {
+    EToast length = EToast.LENGTH_LONG,
+  }) {
     return ft.Fluttertoast.showToast(
       msg: message,
       toastLength: ft.Toast.values[EToast.values.indexOf(length)],
@@ -61,7 +106,11 @@ class MessageDialog {
     );
   }
 
-  static _createMessageContent(BuildContext context, String message, List? details) {
+  static _createMessageContent(
+    BuildContext context,
+    String message,
+    List? details,
+  ) {
     final widgets = <Widget>[];
 
     widgets.add(

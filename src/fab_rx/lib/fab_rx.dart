@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:fab_app/fab_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

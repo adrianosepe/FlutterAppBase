@@ -3,6 +3,7 @@ part of fab_rx;
 enum EBusinessData {
   Cpf,
   Cnpj,
+  CpfOrCnpj,
   Rg,
   InscricaoEstadual,
   Cnh,

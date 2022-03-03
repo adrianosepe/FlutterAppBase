@@ -17,6 +17,10 @@ class MaskTextInputFactory {
         return MaskTextInputFormatter(mask: '##################', filter: {"#": regJustNumbers});
       case EBusinessData.Cnh:
         return MaskTextInputFormatter(mask: '##################', filter: {"#": regJustNumbers});
+      case EBusinessData.Phone:
+        return MaskTextInputFormatter(mask: '(##)####-####', filter: {"#": regJustNumbers});
+      case EBusinessData.CellPhone:
+        return MaskTextInputFormatter(mask: '(##)#####-####', filter: {"#": regJustNumbers});
       case EBusinessData.Plate:
         return MaskTextInputFormatter(
           mask: 'AAA0@00',

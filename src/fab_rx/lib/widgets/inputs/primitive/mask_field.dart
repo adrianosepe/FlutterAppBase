@@ -25,9 +25,7 @@ class UiMaskField extends UiPrimitiveField<String> {
       property: property,
       hintText: hintText,
       controller: controller,
-      inputFormatters: [
-        MaskTextInputFactory.createCustom(mask),
-      ],
+      inputFormatters: MaskTextInputFactory.createCustom(mask),
       keyboardType: TextInputType.number,
       snapshot: snapshot,
     );

@@ -23,9 +23,7 @@ class UiZipcodeField extends UiPrimitiveField<String> {
       property: property,
       hintText: hintText,
       controller: controller,
-      inputFormatters: [
-        MaskTextInputFactory.create(EBusinessData.Zipcode),
-      ],
+      inputFormatters: MaskTextInputFactory.create(EBusinessData.Zipcode),
       keyboardType: TextInputType.number,
       snapshot: snapshot,
     );

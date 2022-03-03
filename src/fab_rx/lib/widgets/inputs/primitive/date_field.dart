@@ -23,9 +23,7 @@ class UiDateField extends UiPrimitiveField<String> {
       property: property,
       hintText: hintText,
       controller: controller,
-      inputFormatters: [
-        MaskTextInputFactory.create(EBusinessData.Date),
-      ],
+      inputFormatters: MaskTextInputFactory.create(EBusinessData.Date),
       keyboardType: TextInputType.number,
       snapshot: snapshot,
     );

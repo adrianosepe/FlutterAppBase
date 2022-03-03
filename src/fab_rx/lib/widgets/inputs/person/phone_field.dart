@@ -25,9 +25,7 @@ class UiPhoneField extends UiPrimitiveField<String> {
       property: property,
       hintText: hintText,
       controller: controller,
-      inputFormatters: [
-        MaskTextInputFactory.create(isCellphone ? EBusinessData.CellPhone : EBusinessData.Phone),
-      ],
+      inputFormatters: MaskTextInputFactory.create(isCellphone ? EBusinessData.CellPhone : EBusinessData.Phone),
       keyboardType: TextInputType.number,
       snapshot: snapshot,
     );

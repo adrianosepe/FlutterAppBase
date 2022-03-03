@@ -25,9 +25,7 @@ class UiDocField extends UiPrimitiveField<String> {
       property: property,
       hintText: hintText,
       controller: controller,
-      inputFormatters: [
-        MaskTextInputFactory.createForDocType(docType),
-      ],
+      inputFormatters: MaskTextInputFactory.createForDocType(docType),
       keyboardType: TextInputType.number,
       snapshot: snapshot,
     );

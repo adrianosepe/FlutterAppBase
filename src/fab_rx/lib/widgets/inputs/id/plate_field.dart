@@ -23,9 +23,7 @@ class UiPlateField extends UiPrimitiveField<String> {
       property: property,
       hintText: hintText,
       controller: controller,
-      inputFormatters: [
-        MaskTextInputFactory.create(EBusinessData.Plate),
-      ],
+      inputFormatters: MaskTextInputFactory.create(EBusinessData.Plate),
       keyboardType: TextInputType.number,
       snapshot: snapshot,
     );

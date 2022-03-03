@@ -5,47 +5,44 @@ class MaskTextInputFactory {
   static final regJustLetters = RegExp(r'[a-zA-Z]');
   static final regLettersAndNumbers = RegExp(r'[0-9a-zA-Z]');
 
-  static TextInputFormatter create(EBusinessData businessData) {
+  static List<TextInputFormatter> create(EBusinessData businessData) {
     switch (businessData) {
       case EBusinessData.Cpf:
-        return MaskTextInputFormatter(mask: '###.###.###-##', filter: {"#": regJustNumbers});
+        return [CpfInputFormatter(), FilteringTextInputFormatter.digitsOnly];
       case EBusinessData.Cnpj:
-        return MaskTextInputFormatter(mask: '##.###.###/####-##', filter: {"#": regJustNumbers});
+        return [CnpjInputFormatter(), FilteringTextInputFormatter.digitsOnly];
+      case EBusinessData.CpfOrCnpj:
+        return [CpfOuCnpjFormatter(), FilteringTextInputFormatter.digitsOnly];
       case EBusinessData.Rg:
-        return MaskTextInputFormatter(mask: '##################', filter: {"#": regJustNumbers});
+        return [FilteringTextInputFormatter.digitsOnly];
       case EBusinessData.InscricaoEstadual:
-        return MaskTextInputFormatter(mask: '##################', filter: {"#": regJustNumbers});
+        return [FilteringTextInputFormatter.digitsOnly];
       case EBusinessData.Cnh:
-        return MaskTextInputFormatter(mask: '##################', filter: {"#": regJustNumbers});
+        return [FilteringTextInputFormatter.digitsOnly];
       case EBusinessData.Phone:
-        return MaskTextInputFormatter(mask: '(##)####-####', filter: {"#": regJustNumbers});
       case EBusinessData.CellPhone:
-        return MaskTextInputFormatter(mask: '(##)#####-####', filter: {"#": regJustNumbers});
+        return [TelefoneInputFormatter(), FilteringTextInputFormatter.digitsOnly];
       case EBusinessData.Plate:
-        return MaskTextInputFormatter(
-          mask: 'AAA0@00',
-          filter: {
-            "A": regJustLetters,
-            '@': regLettersAndNumbers,
-            '0': regJustNumbers,
-          },
-        );
+        return [PlacaVeiculoInputFormatter()];
       case EBusinessData.Date:
-        return MaskTextInputFormatter(mask: '##/##/####', filter: {"#": regJustNumbers});
+        return [DataInputFormatter(), FilteringTextInputFormatter.digitsOnly];
       case EBusinessData.Zipcode:
-        return MaskTextInputFormatter(mask: '#####-###', filter: {"#": regJustNumbers});
+        return [CepInputFormatter(), FilteringTextInputFormatter.digitsOnly];
+
       default:
         throw Exception('Invalid EBusinessData for creation correctly TextInputFormatter');
     }
   }
 
-  static TextInputFormatter createForDocType(EDocType docType) => create(EBusinessData.values.firstWhere((e) => e.name == docType.name));
+  static List<TextInputFormatter> createForDocType(EDocType docType) => create(EBusinessData.values.firstWhere((e) => e.name == docType.name));
 
-  static TextInputFormatter createCustom(String mask) {
-    return MaskTextInputFormatter(mask: mask, filter: {
-      "A": regJustLetters,
-      '@': regLettersAndNumbers,
-      '0': regJustNumbers,
-    });
+  static List<TextInputFormatter> createCustom(String mask) {
+    return [
+      MaskTextInputFormatter(mask: mask, filter: {
+        "A": regJustLetters,
+        '@': regLettersAndNumbers,
+        '0': regJustNumbers,
+      }),
+    ];
   }
 }

@@ -24,7 +24,8 @@ class MessageDialog {
     );
   }
 
-  static Future<bool?> question(BuildContext context, String message, {String title = 'Dúvida?', List? details}) async {
+  static Future<bool?> question(BuildContext context, String message,
+      {String title = 'Dúvida?', String cancelBtnText = 'Cancelar', String confirmBtnText = 'Continuar', List? details}) async {
     return await showDialog<bool>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -38,11 +39,11 @@ class MessageDialog {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Cancelar'),
+              child: Text(cancelBtnText),
               onPressed: () => Navigator.of(context).pop(false),
             ),
             TextButton(
-              child: Text('Continuar'),
+              child: Text(confirmBtnText),
               onPressed: () => Navigator.of(context).pop(true),
             ),
           ],

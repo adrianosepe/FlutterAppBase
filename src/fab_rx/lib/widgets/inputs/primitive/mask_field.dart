@@ -3,6 +3,7 @@ part of fab_rx;
 class UiMaskField extends UiPrimitiveField<String> {
   final controller = MaskedTextController(mask: XString.empty);
 
+  final String? labelText;
   final String? hintText;
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
@@ -12,6 +13,7 @@ class UiMaskField extends UiPrimitiveField<String> {
     Key? key,
     required property,
     required this.mask,
+    this.labelText,
     this.hintText,
     this.keyboardType,
     this.inputFormatters,
@@ -26,6 +28,7 @@ class UiMaskField extends UiPrimitiveField<String> {
     return ui.render.renderInput(
       context: context,
       property: property,
+      labelText: labelText,
       hintText: hintText,
       controller: controller,
       inputFormatters: inputFormatters,

@@ -6,10 +6,12 @@ class Property<TValue> implements IProperty<TValue> {
 
   final bool isRequired;
 
+  final String? label;
   final String? hint;
 
   Property({
     TValue? value,
+    this.label,
     this.hint,
     this.isRequired = false,
     this.isReadOnly = false,

@@ -5,12 +5,14 @@ class CollectionProperty<TItem> extends Property<List<TItem>> {
 
   CollectionProperty({
     List<TItem>? value,
+    String? label,
     String? hint,
     bool isRequired = false,
     bool isReadOnly = false,
     transformer,
   }) : super(
           value: value,
+          label: label,
           hint: hint,
           isRequired: isRequired,
           isReadOnly: isReadOnly,

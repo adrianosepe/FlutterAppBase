@@ -3,6 +3,7 @@ part of fab_rx;
 class UiStringField extends UiPrimitiveField<String> {
   final TextEditingController controller = TextEditingController();
 
+  final String? labelText;
   final String? hintText;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
@@ -10,6 +11,7 @@ class UiStringField extends UiPrimitiveField<String> {
   UiStringField({
     Key? key,
     required property,
+    this.labelText,
     this.hintText,
     this.keyboardType,
     this.inputFormatters,
@@ -25,6 +27,7 @@ class UiStringField extends UiPrimitiveField<String> {
     return ui.render.renderInput(
       context: context,
       property: property,
+      labelText: labelText,
       hintText: hintText,
       controller: controller,
       inputFormatters: inputFormatters,

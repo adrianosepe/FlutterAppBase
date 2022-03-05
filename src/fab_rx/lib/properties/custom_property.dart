@@ -5,10 +5,12 @@ class LocationProperty extends Property<LocationData> {
   String? get city => this.value?.city;
 
   LocationProperty({
+    String? label,
     String? hint,
     bool isRequired = false,
     bool isReadOnly = false,
   }) : super(
+          label: label,
           hint: hint,
           isRequired: isRequired,
           isReadOnly: isReadOnly,
@@ -31,10 +33,12 @@ class DeviceTypeProperty extends Property<DeviceTypeData> {
   String? get model => this.value?.model;
 
   DeviceTypeProperty({
+    String? label,
     String? hint,
     bool isRequired = false,
     bool isReadOnly = false,
   }) : super(
+          label: label,
           hint: hint,
           isRequired: isRequired,
           isReadOnly: isReadOnly,

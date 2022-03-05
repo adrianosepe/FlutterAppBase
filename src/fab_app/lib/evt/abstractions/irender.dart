@@ -4,6 +4,7 @@ abstract class IRender {
   Widget renderInput({
     required BuildContext context,
     required IProperty<String> property,
+    String? labelText,
     String? hintText,
     required TextEditingController controller,
     List<TextInputFormatter>? inputFormatters,

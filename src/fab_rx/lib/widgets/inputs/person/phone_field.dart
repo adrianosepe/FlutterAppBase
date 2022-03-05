@@ -12,7 +12,7 @@ class UiPhoneField extends UiMaskField {
           key: key,
           property: property,
           hintText: hintText,
-          mask: isCellphone ? '(00) 00000-0000' : '(00) 00000-0000',
+          mask: isCellphone ? '(00) 00000-0000' : '(00) 0000-0000',
           keyboardType: TextInputType.number,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         );

@@ -5,6 +5,7 @@ class BaseRender extends BaseContext implements IRender {
   Widget renderInput({
     required BuildContext context,
     required IProperty<String> property,
+    String? labelText,
     String? hintText,
     required TextEditingController controller,
     List<TextInputFormatter>? inputFormatters,
@@ -22,7 +23,8 @@ class BaseRender extends BaseContext implements IRender {
       obscureText: false,
       style: TextStyle(fontSize: 20),
       decoration: InputDecoration(
-        labelText: hintText ?? property.hint,
+        labelText: labelText ?? property.label,
+        hintText: hintText ?? property.hint,
         errorText: snapshot.error?.toString(),
         contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         border: OutlineInputBorder(
@@ -99,7 +101,7 @@ class BaseRender extends BaseContext implements IRender {
             focusNode: HandleFocusNode.handle(isReadOnly: property.isReadOnly),
             dropdownSearchBaseStyle: const TextStyle(fontSize: 20),
             dropdownSearchDecoration: InputDecoration(
-              labelText: hintText ?? property.hint,
+              labelText: hintText ?? property.label,
               errorText: snapshot.error?.toString(),
               contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
               border: OutlineInputBorder(
@@ -121,7 +123,7 @@ class BaseRender extends BaseContext implements IRender {
       value: snapshot.data ?? false,
       onChanged: property.setter,
       title: Text(
-        hintText ?? property.hint ?? XString.empty,
+        hintText ?? property.label ?? XString.empty,
         style: const TextStyle(
           fontWeight: FontWeight.bold,
           color: Colors.red,

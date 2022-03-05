@@ -3,6 +3,7 @@ part of fab_rx;
 class UiNumberField extends UiPrimitiveField<String> {
   final TextEditingController controller = TextEditingController();
 
+  final String? labelText;
   final String? hintText;
   final bool isCurrency;
   final List<TextInputFormatter>? inputFormatters;
@@ -10,6 +11,7 @@ class UiNumberField extends UiPrimitiveField<String> {
   UiNumberField({
     Key? key,
     required property,
+    this.labelText,
     this.hintText,
     this.inputFormatters,
     this.isCurrency = false,
@@ -25,6 +27,7 @@ class UiNumberField extends UiPrimitiveField<String> {
     return ui.render.renderInput(
       context: context,
       property: property,
+      labelText: labelText,
       hintText: hintText,
       controller: controller,
       inputFormatters: inputFormatters,

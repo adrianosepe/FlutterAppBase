@@ -15,12 +15,14 @@ class DateTimeProperty extends StringProperty {
 class StringProperty extends Property<String> {
   StringProperty({
     String? value,
+    String? label,
     String? hint,
     bool isRequired = false,
     bool isReadOnly = false,
     transformer,
   }) : super(
           value: value,
+          label: label,
           hint: hint,
           isRequired: isRequired,
           isReadOnly: isReadOnly,
@@ -31,12 +33,14 @@ class StringProperty extends Property<String> {
 class IntProperty extends Property<int> {
   IntProperty({
     int? value,
+    String? label,
     String? hint,
     bool isRequired = false,
     bool isReadOnly = false,
     transformer,
   }) : super(
           value: value,
+          label: label,
           hint: hint,
           isRequired: isRequired,
           isReadOnly: isReadOnly,
@@ -47,12 +51,14 @@ class IntProperty extends Property<int> {
 class DoubleProperty extends Property<double> {
   DoubleProperty({
     double? value,
+    String? label,
     String? hint,
     bool isRequired = false,
     bool isReadOnly = false,
     transformer,
   }) : super(
           value: value,
+          label: label,
           hint: hint,
           isRequired: isRequired,
           isReadOnly: isReadOnly,
@@ -63,12 +69,14 @@ class DoubleProperty extends Property<double> {
 class BoolProperty extends Property<bool> {
   BoolProperty({
     bool? value,
+    String? label,
     String? hint,
     bool isRequired = false,
     bool isReadOnly = false,
     transformer,
   }) : super(
           value: value,
+          label: label,
           hint: hint,
           isRequired: isRequired,
           isReadOnly: isReadOnly,

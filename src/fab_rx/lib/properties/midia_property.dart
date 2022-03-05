@@ -4,10 +4,12 @@ class ImageProperty extends Property<String> {
   static const image_base64 = 'data:image/png;base64';
 
   ImageProperty({
+    String? label,
     String? hint,
     bool isRequired = false,
     bool isReadOnly = false,
   }) : super(
+          label: label,
           hint: hint,
           isRequired: isRequired,
           isReadOnly: isReadOnly,

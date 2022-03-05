@@ -1,33 +1,19 @@
 part of fab_rx;
 
-class UiPhoneField extends UiPrimitiveField<String> {
-  final TextEditingController controller = TextEditingController();
-
-  final String? hintText;
+class UiPhoneField extends UiMaskField {
   final bool isCellphone;
 
   UiPhoneField({
     Key? key,
     required property,
-    this.hintText,
-    this.isCellphone = false,
+    required hintText,
+    required this.isCellphone,
   }) : super(
           key: key,
           property: property,
+          hintText: hintText,
+          mask: isCellphone ? '(00) 00000-0000' : '(00) 00000-0000',
+          keyboardType: TextInputType.number,
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         );
-
-  @override
-  Widget builder(BuildContext context, AsyncSnapshot<String?> snapshot) {
-    controller.value = controller.value.copyWith(text: snapshot.data);
-
-    return ui.render.renderInput(
-      context: context,
-      property: property,
-      hintText: hintText,
-      controller: controller,
-      inputFormatters: MaskTextInputFactory.create(isCellphone ? EBusinessData.CellPhone : EBusinessData.Phone),
-      keyboardType: TextInputType.number,
-      snapshot: snapshot,
-    );
-  }
 }

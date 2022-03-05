@@ -1,9 +1,11 @@
 part of fab_rx;
 
 class UiMaskField extends UiPrimitiveField<String> {
-  final TextEditingController controller = TextEditingController();
+  final controller = MaskedTextController(mask: XString.empty);
 
   final String? hintText;
+  final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
   final String mask;
 
   UiMaskField({
@@ -11,10 +13,11 @@ class UiMaskField extends UiPrimitiveField<String> {
     required property,
     required this.mask,
     this.hintText,
-  }) : super(
-          key: key,
-          property: property,
-        );
+    this.keyboardType,
+    this.inputFormatters,
+  }) : super(key: key, property: property) {
+    controller.mask = this.mask;
+  }
 
   @override
   Widget builder(BuildContext context, AsyncSnapshot<String?> snapshot) {
@@ -25,8 +28,8 @@ class UiMaskField extends UiPrimitiveField<String> {
       property: property,
       hintText: hintText,
       controller: controller,
-      inputFormatters: MaskTextInputFactory.createCustom(mask),
-      keyboardType: TextInputType.number,
+      inputFormatters: inputFormatters,
+      keyboardType: keyboardType,
       snapshot: snapshot,
     );
   }

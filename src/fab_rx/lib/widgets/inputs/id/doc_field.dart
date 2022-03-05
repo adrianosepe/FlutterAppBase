@@ -1,33 +1,43 @@
 part of fab_rx;
 
-class UiDocField extends UiPrimitiveField<String> {
-  final TextEditingController controller = TextEditingController();
-
-  final EDocType docType;
-  final String? hintText;
-
+class UiDocField extends UiMaskField {
   UiDocField({
     Key? key,
     required property,
-    required this.docType,
-    this.hintText,
+    required EDocType docType,
+    required hintText,
   }) : super(
           key: key,
           property: property,
+          hintText: hintText,
+          mask: getMaskAsStr(docType),
+          keyboardType: TextInputType.number,
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         );
 
-  @override
-  Widget builder(BuildContext context, AsyncSnapshot<String?> snapshot) {
-    controller.value = controller.value.copyWith(text: snapshot.data);
+  static String getMaskAsStr(EDocType docType) {
+    switch (docType) {
+      case EDocType.Cpf:
+        return '000.000.000-00';
+      case EDocType.Cnpj:
+        return '00.000.000/0000-00';
+      case EDocType.Rg:
+        return '000000000000000';
+      case EDocType.InscricaoEstadual:
+        return '000000000000000';
+      case EDocType.Cnh:
+        return '000000000000000';
+    }
+  }
 
-    return ui.render.renderInput(
-      context: context,
-      property: property,
-      hintText: hintText,
-      controller: controller,
-      inputFormatters: MaskTextInputFactory.createForDocType(docType),
-      keyboardType: TextInputType.number,
-      snapshot: snapshot,
-    );
+  static TextInputType? getKeyboardType(EDocType docType) {
+    switch (docType) {
+      case EDocType.Cpf:
+      case EDocType.Cnpj:
+      case EDocType.Rg:
+      case EDocType.InscricaoEstadual:
+      case EDocType.Cnh:
+        return TextInputType.number;
+    }
   }
 }

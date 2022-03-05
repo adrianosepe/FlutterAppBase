@@ -1,31 +1,16 @@
 part of fab_rx;
 
-class UiDateField extends UiPrimitiveField<String> {
-  final TextEditingController controller = TextEditingController();
-
-  final String? hintText;
-
+class UiDateField extends UiMaskField {
   UiDateField({
     Key? key,
     required property,
-    this.hintText,
+    required hintText,
   }) : super(
           key: key,
           property: property,
+          hintText: hintText,
+          mask: '00/00/0000',
+          keyboardType: TextInputType.number,
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         );
-
-  @override
-  Widget builder(BuildContext context, AsyncSnapshot<String?> snapshot) {
-    controller.value = controller.value.copyWith(text: snapshot.data);
-
-    return ui.render.renderInput(
-      context: context,
-      property: property,
-      hintText: hintText,
-      controller: controller,
-      inputFormatters: MaskTextInputFactory.create(EBusinessData.Date),
-      keyboardType: TextInputType.number,
-      snapshot: snapshot,
-    );
-  }
 }

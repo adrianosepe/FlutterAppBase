@@ -1,31 +1,16 @@
 part of fab_rx;
 
-class UiZipcodeField extends UiPrimitiveField<String> {
-  final TextEditingController controller = TextEditingController();
-
-  final String? hintText;
-
+class UiZipcodeField extends UiMaskField {
   UiZipcodeField({
     Key? key,
     required property,
-    this.hintText,
+    required hintText,
   }) : super(
           key: key,
           property: property,
+          hintText: hintText,
+          mask: '00.000-000',
+          keyboardType: TextInputType.number,
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         );
-
-  @override
-  Widget builder(BuildContext context, AsyncSnapshot<String?> snapshot) {
-    controller.value = controller.value.copyWith(text: snapshot.data);
-
-    return ui.render.renderInput(
-      context: context,
-      property: property,
-      hintText: hintText,
-      controller: controller,
-      inputFormatters: MaskTextInputFactory.create(EBusinessData.Zipcode),
-      keyboardType: TextInputType.number,
-      snapshot: snapshot,
-    );
-  }
 }

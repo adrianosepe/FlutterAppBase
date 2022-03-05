@@ -2,15 +2,13 @@ library fab_rx;
 
 import 'dart:async';
 import 'dart:convert';
-import 'dart:math';
 import 'dart:typed_data';
 
-import 'package:brasil_fields/brasil_fields.dart';
 import 'package:fab_app/fab_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'package:fab_lib/fab_lib.dart';
@@ -22,9 +20,6 @@ part 'blocs/bloc.dart';
 part 'blocs/form.dart';
 
 part 'common/input_formatters/edoc_type.dart';
-part 'common/input_formatters/ebusiness_data.dart';
-part 'common/input_formatters/mask_text_input_factory.dart';
-part 'common/input_formatters/mask_text_input_formatter.dart';
 
 part 'properties/validators/docs/cnpj.dart';
 part 'properties/validators/docs/cpf.dart';

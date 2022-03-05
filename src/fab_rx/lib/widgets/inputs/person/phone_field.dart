@@ -6,8 +6,8 @@ class UiPhoneField extends UiMaskField {
   UiPhoneField({
     Key? key,
     required property,
-    required hintText,
     required this.isCellphone,
+    String? hintText,
   }) : super(
           key: key,
           property: property,

@@ -4,7 +4,7 @@ class UiZipcodeField extends UiMaskField {
   UiZipcodeField({
     Key? key,
     required property,
-    required hintText,
+    String? hintText,
   }) : super(
           key: key,
           property: property,

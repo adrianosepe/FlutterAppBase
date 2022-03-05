@@ -4,6 +4,6 @@ class UiPlateField extends UiMaskField {
   UiPlateField({
     Key? key,
     required property,
-    required mask,
-  }) : super(key: key, property: property, mask: 'AAA-0@000');
+    String? hintText,
+  }) : super(key: key, property: property, mask: 'AAA-0@000', hintText: hintText);
 }

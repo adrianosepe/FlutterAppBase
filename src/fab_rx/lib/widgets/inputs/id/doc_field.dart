@@ -5,7 +5,7 @@ class UiDocField extends UiMaskField {
     Key? key,
     required property,
     required EDocType docType,
-    required hintText,
+    String? hintText,
   }) : super(
           key: key,
           property: property,

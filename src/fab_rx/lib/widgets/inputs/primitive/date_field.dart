@@ -4,7 +4,7 @@ class UiDateField extends UiMaskField {
   UiDateField({
     Key? key,
     required property,
-    required hintText,
+    String? hintText,
   }) : super(
           key: key,
           property: property,

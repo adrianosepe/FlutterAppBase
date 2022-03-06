@@ -1,4 +1,4 @@
-import 'package:fab_rx/fab_rx.dart';
+part of fab_rx;
 
 class CollectionProperty<TItem> extends Property<List<TItem>> {
   List<TItem> get _secItems => super.value ?? <TItem>[];

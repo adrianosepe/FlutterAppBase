@@ -26,10 +26,12 @@ part 'properties/validators/docs/cpf.dart';
 part 'properties/validators/model_validators.dart';
 part 'properties/validators/validation_result.dart';
 
+part 'properties/collection_property.dart';
+part 'properties/custom_property.dart';
 part 'properties/doc_property.dart';
 part 'properties/midia_property.dart';
+part 'properties/personal_property.dart';
 part 'properties/primitive_property.dart';
-part 'properties/custom_property.dart';
 part 'properties/property.dart';
 
 part 'widgets/container/card.dart';

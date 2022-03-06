@@ -32,6 +32,7 @@ part 'evt/base_style.dart';
 part 'evt/base_ui_settings.dart';
 
 part 'rx/iproperty.dart';
+part 'rx/behaviors/imaxlength.dart';
 
 part 'services/models/ientity_base.dart';
 part 'services/entity_web_api_service.dart';

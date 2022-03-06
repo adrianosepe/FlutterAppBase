@@ -12,6 +12,8 @@ class BaseRender extends BaseContext implements IRender {
     TextInputType? keyboardType,
     required AsyncSnapshot<String?> snapshot,
   }) {
+    final maxLength = property is IMaxLenght ? (property as IMaxLenght).maxLength : null;
+
     return TextField(
       controller: controller,
       onChanged: property.setter,
@@ -22,6 +24,7 @@ class BaseRender extends BaseContext implements IRender {
       keyboardType: keyboardType,
       obscureText: false,
       style: TextStyle(fontSize: 20),
+      maxLength: maxLength,
       decoration: InputDecoration(
         labelText: labelText ?? property.label,
         hintText: hintText ?? property.hint,

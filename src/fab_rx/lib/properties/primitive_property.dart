@@ -12,13 +12,15 @@ class DateTimeProperty extends StringProperty {
         );
 }
 
-class StringProperty extends Property<String> {
+class StringProperty extends Property<String> implements IMaxLenght {
+  int? maxLength;
   StringProperty({
     String? value,
     String? label,
     String? hint,
     bool isRequired = false,
     bool isReadOnly = false,
+    this.maxLength,
     transformer,
   }) : super(
           value: value,

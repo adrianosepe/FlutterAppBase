@@ -42,7 +42,11 @@ part 'widgets/inputs/id/doc_field.dart';
 part 'widgets/inputs/id/plate_field.dart';
 part 'widgets/inputs/media/avatar_field.dart';
 part 'widgets/inputs/option/bool_field.dart';
+
+part 'widgets/inputs/person/email_field.dart';
+part 'widgets/inputs/person/name_field.dart';
 part 'widgets/inputs/person/phone_field.dart';
+
 part 'widgets/inputs/primitive/date_field.dart';
 part 'widgets/inputs/primitive/mask_field.dart';
 part 'widgets/inputs/primitive/number_field.dart';

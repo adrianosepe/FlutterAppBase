@@ -29,8 +29,9 @@ class KeyValueStore {
   void setStringList(String key, List<String> value) => _prefs.setStringList(key, value);
   void setDateTime(String key, DateTime value) => _prefs.setString(key, value.toIso8601String());
 
-  StringStoreProperty getStringProperty(String name, {String? defValue}) => StringStoreProperty(this, name, defValue: defValue);
+  StringStoreProperty getStringProperty(String name, {String defValue = ''}) => StringStoreProperty(this, name, defValue: defValue);
   DateTimeStoreProperty getDateTimeProperty(String name, {DateTime? defValue}) => DateTimeStoreProperty(this, name, defValue: defValue);
 
-  JsonStoreProperty<T> getJsonProperty<T>(String name, Func1<T, String> toJson, Func1<String?, T?> fromJson) => JsonStoreProperty<T>(this, name, toJson, fromJson);
+  JsonStoreProperty<T> getJsonProperty<T>(String name, Func1<T, String> toJson, Func1<String?, T?> fromJson) =>
+      JsonStoreProperty<T>(this, name, toJson, fromJson);
 }

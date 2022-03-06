@@ -5,31 +5,31 @@ class Transformers {
     sink.add(value);
   });
 
-  static final validateEmail = StreamTransformer<String?, String?>.fromHandlers(handleData: (email, sink) {
-    if (email != null && email.contains('@')) {
+  static final validateEmail = StreamTransformer<String, String>.fromHandlers(handleData: (email, sink) {
+    if (email.contains('@')) {
       sink.add(email.toLowerCase());
     } else {
       sink.addError('Por favor informe um e-mail válido');
     }
   });
 
-  static final validatePassword = StreamTransformer<String?, String?>.fromHandlers(handleData: (password, sink) {
-    if (password != null) {
+  static final validatePassword = StreamTransformer<String, String>.fromHandlers(handleData: (password, sink) {
+    if (password.length > 0) {
       sink.add(password);
     } else {
       sink.addError('Por favor informe uma senha válida');
     }
   });
 
-  static final upper = StreamTransformer<String?, String?>.fromHandlers(
+  static final upper = StreamTransformer<String, String>.fromHandlers(
     handleData: (data, sink) {
-      sink.add(data?.toUpperCase());
+      sink.add(data.toUpperCase());
     },
   );
 
-  static final lower = StreamTransformer<String?, String?>.fromHandlers(
+  static final lower = StreamTransformer<String, String>.fromHandlers(
     handleData: (data, sink) {
-      sink.add(data?.toLowerCase());
+      sink.add(data.toLowerCase());
     },
   );
 }

@@ -5,8 +5,8 @@ class Transformers {
     sink.add(value);
   });
 
-  static final validateEmail = StreamTransformer<String, String>.fromHandlers(handleData: (email, sink) {
-    if (email.contains('@')) {
+  static final validateEmail = StreamTransformer<String?, String>.fromHandlers(handleData: (email, sink) {
+    if (email != null && email.contains('@')) {
       sink.add(email.toLowerCase());
     } else {
       sink.addError('Por favor informe um e-mail válido');

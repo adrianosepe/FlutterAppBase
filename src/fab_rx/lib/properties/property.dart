@@ -2,7 +2,7 @@ part of fab_rx;
 
 class Property<TValue> implements IProperty<TValue> {
   final BehaviorSubject<TValue?> subject = BehaviorSubject<TValue?>();
-  final StreamTransformer<TValue, TValue>? transformer;
+  final StreamTransformer<TValue?, TValue>? transformer;
 
   final bool isRequired;
 

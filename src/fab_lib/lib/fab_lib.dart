@@ -10,6 +10,12 @@ import 'dart:async';
 
 import 'package:intl/intl.dart' as intl;
 
+import 'dart:io';
+
+import "package:collection/collection.dart" as coll;
+
+import 'package:path_provider/path_provider.dart';
+
 part 'common/async/lazy.dart';
 part 'common/async/lazy_async.dart';
 
@@ -25,6 +31,8 @@ part 'events/event_args.dart';
 part 'helpers/xdatetime.dart';
 part 'helpers/xenum.dart';
 part 'helpers/xflow.dart';
+part 'helpers/ximage.dart';
+part 'helpers/xiterable.dart';
 part 'helpers/xjson.dart';
 part 'helpers/xnumber.dart';
 part 'helpers/xstring.dart';

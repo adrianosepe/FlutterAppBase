@@ -1,6 +1,4 @@
-import 'dart:io';
-
-import 'package:path_provider/path_provider.dart';
+part of fab_lib;
 
 class XImage {
   static Future<String> saveAsTemporaryFile(List<int> content) async {

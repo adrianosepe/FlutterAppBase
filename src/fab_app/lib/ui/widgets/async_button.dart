@@ -24,7 +24,7 @@ class UiAsyncButton<TData> extends StatefulWidget {
   _UiAsyncButtonState<TData> createState() => _UiAsyncButtonState<TData>();
 }
 
-class _UiAsyncButtonState<TData> extends State<UiAsyncButton> {
+class _UiAsyncButtonState<TData> extends State<UiAsyncButton<TData>> {
   EButtonState _state = EButtonState.Normal;
 
   @override
@@ -54,9 +54,9 @@ class _UiAsyncButtonState<TData> extends State<UiAsyncButton> {
           await Future.delayed(Duration(milliseconds: 850));
 
           if (args.cancel) {
-            widget.onFail?.call(args.data);
+            widget.onFail?.call(args.data!);
           } else {
-            widget.onSuccess?.call(args.data);
+            widget.onSuccess?.call(args.data!);
           }
         });
   }

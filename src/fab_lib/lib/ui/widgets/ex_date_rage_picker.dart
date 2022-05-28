@@ -1153,7 +1153,7 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
 			),
 		);
 // ignore: deprecated_member_use
-		final Widget actions = ButtonTheme.bar(
+		final Widget actions = ButtonBarTheme(
 			child: ButtonBar(
 				children: <Widget>[
 					FlatButton(

@@ -7,6 +7,7 @@ class TypedResult<TData> extends IResult {
   final String? message;
 
   bool get ok => status == EResultStatus.Ok;
+  bool get nok => !ok;
 
   TypedResult({
     this.data,
@@ -49,7 +50,11 @@ class TypedResult<TData> extends IResult {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is TypedResult<TData> && other.data == data && listEquals(other.details, details) && other.status == status && other.message == message;
+    return other is TypedResult<TData> &&
+        other.data == data &&
+        listEquals(other.details, details) &&
+        other.status == status &&
+        other.message == message;
   }
 
   @override

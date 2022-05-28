@@ -25,7 +25,7 @@ class Result extends TypedResult<Object> {
 
   static Result exception(Exception ex) => error(ex.toString());
 
-  static Result success({Object? data, String? nessage}) => Result(status: EResultStatus.Ok, message: nessage, data: data);
+  static Result success({Object? data, String? message}) => Result(status: EResultStatus.Ok, message: message, data: data);
 
   static Result warning(String alert) => Result(status: EResultStatus.Warning, message: alert);
 

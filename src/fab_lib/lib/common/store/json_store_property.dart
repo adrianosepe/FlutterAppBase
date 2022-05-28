@@ -5,7 +5,7 @@ class JsonStoreProperty<T> {
   final KeyValueStore _store;
   final T? defValue;
 
-  final Func1<T, String> toJson;
+  final Func1<T?, String> toJson;
   final Func1<String?, T?> fromJson;
 
   JsonStoreProperty(this._store, this.name, this.toJson, this.fromJson, {this.defValue});
@@ -22,7 +22,7 @@ class JsonStoreProperty<T> {
       );
   set value(T? v) => XFlow.ensure(
         () {
-          final s = toJson(v!);
+          final s = toJson(v);
 
           _store.setString(name, s);
         },

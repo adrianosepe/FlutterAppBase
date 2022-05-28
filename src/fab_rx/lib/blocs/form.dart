@@ -17,6 +17,12 @@ class Form {
     return this;
   }
 
+  void listAnyChange(void onData(Property property, dynamic data)) {
+    for (final p in _properties) {
+      p.stream.listen((event) => onData(p, event));
+    }
+  }
+
   void internalIsReadOnlyChanged() {
     final rd = _isReadOnly;
     for (final p in _properties) {

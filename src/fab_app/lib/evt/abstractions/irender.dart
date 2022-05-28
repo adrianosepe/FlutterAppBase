@@ -16,7 +16,7 @@ abstract class IRender {
     required BuildContext context,
     required IProperty<T> property,
     required IProperty<List<T>> datasource,
-    String? hintText,
+    String? labelText,
     required AsyncSnapshot snapshot,
   });
 
@@ -24,15 +24,26 @@ abstract class IRender {
     required BuildContext context,
     required IProperty<T> property,
     required IProperty<List<T>> datasource,
+    String? labelText,
     String? hintText,
+    bool isSearchable,
     required AsyncSnapshot snapshot,
   });
 
   Widget renderSwitch({
     required BuildContext context,
     required IProperty<bool> property,
-    required String? hintText,
+    required String? labelText,
     required AsyncSnapshot<bool?> snapshot,
+  });
+
+  Widget renderCheckbox({
+    required BuildContext context,
+    required IProperty<bool> property,
+    required String? labelText,
+    required AsyncSnapshot<bool?> snapshot,
+    TextStyle? checkedTextStyle,
+    TextStyle? uncheckedTextStyle,
   });
 
   Widget renderButton({

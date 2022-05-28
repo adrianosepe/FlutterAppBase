@@ -21,9 +21,9 @@ class Transformers {
     }
   });
 
-  static final upper = StreamTransformer<String, String>.fromHandlers(
+  static final upper = StreamTransformer<String?, String>.fromHandlers(
     handleData: (data, sink) {
-      sink.add(data.toUpperCase());
+      sink.add(data?.toUpperCase() ?? XString.empty);
     },
   );
 

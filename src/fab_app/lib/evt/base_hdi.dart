@@ -17,8 +17,8 @@ class BaseHdi implements IHdi {
     await ft.Fluttertoast.showToast(
       msg: information,
       toastLength: ft.Toast.LENGTH_SHORT,
-      backgroundColor: Colors.blue,
-      textColor: Colors.white,
+      backgroundColor: Theme.of(context).primaryColor,
+      textColor: Theme.of(context).textTheme.caption?.color,
     );
   }
 
@@ -37,8 +37,8 @@ class BaseHdi implements IHdi {
     await ft.Fluttertoast.showToast(
       msg: result.message ?? XString.empty,
       toastLength: ft.Toast.LENGTH_SHORT,
-      backgroundColor: Colors.red,
-      textColor: Colors.white,
+      backgroundColor: Theme.of(context).primaryColor,
+      textColor: Theme.of(context).textTheme.caption?.color,
     );
   }
 }

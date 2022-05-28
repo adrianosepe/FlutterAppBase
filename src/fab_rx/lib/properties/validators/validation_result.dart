@@ -11,7 +11,7 @@ class ValidationResult {
 
   ValidationResult check<T>(
     Property<T> property, {
-    Func1<T, String>? what,
+    Func1<T?, String?>? what,
   }) {
     ModelValidators.check<T>(
       property,
@@ -25,7 +25,7 @@ class ValidationResult {
   ValidationResult checkIf<T>(
     Property<T> property,
     Func<bool> predicate, {
-    Func1<T, String>? what,
+    Func1<T?, String?>? what,
   }) {
     if (!predicate()) {
       return this;
@@ -49,7 +49,7 @@ class ValidationResult {
 extension ValidationResultExtensions on ValidationResult {
   ValidationResult check<T>(
     Property<T> property,
-    Func1<T, String> funCheck,
+    Func1<T?, String?> funCheck,
   ) {
     ModelValidators.check<T>(
       property,

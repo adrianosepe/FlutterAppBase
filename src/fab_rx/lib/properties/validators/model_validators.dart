@@ -1,14 +1,19 @@
 part of fab_rx;
 
 class ModelValidators {
+  static String _phonePattern = "^\\([1-9]{2}\\) [0-9]{4}\\-[0-9]{4}\$";
+  static String _cellphonePattern = "^\\([1-9]{2}\\) 9[7-9]{1}[0-9]{3}\\-[0-9]{4}\$";
   static String _emailPattern = "^[a-zA-Z0-9.a-zA-Z0-9.!#\$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
   static String _mercosulPlacaPattern = "[a-zA-Z]{3}-?[0-9][a-zA-Z0-9][0-9]{2}";
 
   static ValidationResult begin({ValidationResult? validations}) => validations ?? ValidationResult();
 
-  static String? isEmail(String email) => _check(_emailPattern, email, 'E-mail não é válido');
+  static String? isPhone(String? phone) => _check(_phonePattern, phone, 'Telefone não é válido');
+  static String? isCellPhone(String? phone) => _check(_cellphonePattern, phone, 'Celular não é válido');
 
-  static String? isCpf(String value) {
+  static String? isEmail(String? email) => _check(_emailPattern, email, 'E-mail não é válido');
+
+  static String? isCpf(String? value) {
     if (XString.isNullOrEmpty(value)) {
       return null;
     }
@@ -32,15 +37,17 @@ class ModelValidators {
     return null;
   }
 
-  static String? isRg(String value) {
+  static String? isRg(String? value) {
     if (XString.isNullOrEmpty(value)) {
       return null;
     }
 
-    return value.length <= 5 ? 'RG inválido' : null;
+    final v = DataNormalizer.removePunctuation(value);
+
+    return v.length <= 5 ? 'RG inválido' : null;
   }
 
-  static String? isCep(String value) {
+  static String? isCep(String? value) {
     if (XString.isNullOrEmpty(value)) {
       return null;
     }
@@ -83,16 +90,16 @@ class ModelValidators {
 
   static bool check<T>(
     Property<T> property,
-    Func1<T, String>? what, {
+    Func1<T?, String?>? what, {
     ValidationResult? validationResult,
   }) {
     String? failMessage;
 
     if (what != null) {
-      failMessage = what.call(property.value!);
+      failMessage = what.call(property.value);
     }
 
-    if (XString.isNullOrEmpty(failMessage) && property.isRequired && property.value == null) {
+    if (property.isRequired && XString.isNullOrEmpty(failMessage) && (property.value == null || XString.isNullOrEmpty(property.value.toString()))) {
       failMessage = 'Esse campo é requerido';
     }
 

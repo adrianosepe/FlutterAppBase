@@ -2,13 +2,14 @@ part of fab_rx;
 
 class UiDropdownField<T> extends UiPrimitiveField<T> {
   final IProperty<List<T>> datasource;
-  final String? hintText;
+
+  final String? labelText;
 
   const UiDropdownField({
     Key? key,
     required property,
     required this.datasource,
-    this.hintText,
+    this.labelText,
   }) : super(
           key: key,
           property: property,
@@ -20,7 +21,7 @@ class UiDropdownField<T> extends UiPrimitiveField<T> {
       context: context,
       property: property,
       datasource: datasource,
-      hintText: hintText,
+      labelText: labelText,
       snapshot: snapshot,
     );
   }

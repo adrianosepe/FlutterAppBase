@@ -1,4 +1,4 @@
-import "package:collection/collection.dart" as coll;
+part of fab_lib;
 
 class XIterable {
   static Iterable<Pair<TKey, TValue>> groupBy<TKey, TValue>(Iterable<TValue> values, TKey func(TValue element)) sync* {

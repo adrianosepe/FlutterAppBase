@@ -108,5 +108,3 @@ class _UiAsyncButtonState<TData> extends State<UiAsyncButton<TData>> {
     }
   }
 }
-
-enum EButtonState { Normal, Running, Success, Fail }

@@ -7,6 +7,8 @@ class UiStringField extends UiPrimitiveField<String> {
   final String? hintText;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
+  final bool obscureText;
+  final String obscuringCharacter;
 
   UiStringField({
     Key? key,
@@ -15,6 +17,8 @@ class UiStringField extends UiPrimitiveField<String> {
     this.hintText,
     this.keyboardType,
     this.inputFormatters,
+    this.obscureText = false,
+    this.obscuringCharacter = '*',
   }) : super(
           key: key,
           property: property,
@@ -33,6 +37,8 @@ class UiStringField extends UiPrimitiveField<String> {
       inputFormatters: inputFormatters,
       keyboardType: keyboardType,
       snapshot: snapshot,
+      obscureText: obscureText,
+      obscuringCharacter: obscuringCharacter,
     );
   }
 }

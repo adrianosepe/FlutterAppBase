@@ -19,6 +19,8 @@ part 'blocs/bloc_provider.dart';
 part 'blocs/bloc.dart';
 part 'blocs/form.dart';
 
+part 'events/stream_set_state.dart';
+
 part 'common/input_formatters/edoc_type.dart';
 
 part 'properties/validators/docs/cnpj.dart';

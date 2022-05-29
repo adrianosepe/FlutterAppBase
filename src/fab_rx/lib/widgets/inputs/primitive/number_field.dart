@@ -6,14 +6,12 @@ class UiNumberField extends UiPrimitiveField<String> {
   final String? labelText;
   final String? hintText;
   final bool isCurrency;
-  final List<TextInputFormatter>? inputFormatters;
 
   UiNumberField({
     Key? key,
     required property,
     this.labelText,
     this.hintText,
-    this.inputFormatters,
     this.isCurrency = false,
   }) : super(
           key: key,
@@ -27,12 +25,33 @@ class UiNumberField extends UiPrimitiveField<String> {
     return ui.render.renderInput(
       context: context,
       property: property,
+      snapshot: snapshot,
+      controller: controller,
       labelText: labelText,
       hintText: hintText,
-      controller: controller,
-      inputFormatters: inputFormatters,
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly,
+        CurrencyInputFormatter(),
+      ],
       keyboardType: TextInputType.number,
-      snapshot: snapshot,
+      textAlign: TextAlign.right,
+    );
+  }
+}
+
+class CurrencyInputFormatter extends TextInputFormatter {
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    if (newValue.selection.baseOffset == 0) {
+      return newValue;
+    }
+
+    double value = double.parse(newValue.text);
+
+    String newText = XNumber.formatDouble(value / 100, 2);
+
+    return newValue.copyWith(
+      text: newText,
+      selection: TextSelection.collapsed(offset: newText.length),
     );
   }
 }

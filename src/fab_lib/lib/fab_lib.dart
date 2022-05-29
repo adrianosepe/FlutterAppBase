@@ -3,7 +3,9 @@ library fab_lib;
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:fab_lib/services/grapptec_result_factory.dart';
 import 'package:flutter/foundation.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'dart:async';
@@ -11,6 +13,7 @@ import 'dart:async';
 import 'package:intl/intl.dart' as intl;
 
 import 'dart:io';
+import 'dart:typed_data';
 
 import "package:collection/collection.dart" as coll;
 
@@ -30,6 +33,7 @@ part 'events/event_args.dart';
 
 part 'helpers/xdatetime.dart';
 part 'helpers/xenum.dart';
+part 'helpers/xfiles.dart';
 part 'helpers/xflow.dart';
 part 'helpers/ximage.dart';
 part 'helpers/xiterable.dart';
@@ -44,4 +48,5 @@ part 'services/abstraction/iresult.dart';
 part 'services/models/enums/eresult_status.dart';
 part 'services/models/result_info.dart';
 part 'services/result.dart';
+part 'services/result_factory.dart';
 part 'services/typed_result.dart';

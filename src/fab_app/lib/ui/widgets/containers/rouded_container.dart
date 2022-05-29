@@ -16,7 +16,7 @@ class UiRoudedContainer extends UiView {
           color: Colors.grey.withOpacity(0.5),
           width: 1.0,
         ),
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(5.0),
       ),
       child: this.child,
     );

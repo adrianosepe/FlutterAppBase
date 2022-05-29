@@ -6,5 +6,5 @@ abstract class IEnvironment {
   IHdi get hdi;
 
   bool get inAuthSession;
-  String? get userToken;
+  String? get authToken;
 }

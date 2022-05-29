@@ -1,6 +1,6 @@
 part of fab_rx;
 
-class DateTimeProperty extends StringProperty {
+class DateTimeProperty extends Property<DateTime> {
   DateTimeProperty({
     String? hint,
     bool isRequired = false,

@@ -2,13 +2,17 @@ part of fab_lib;
 
 class XDateTime {
   static final intl.DateFormat defFileNameFormat = intl.DateFormat('ddMMyyHHmm');
+  static final intl.DateFormat defFileNameWithSecondsFormat = intl.DateFormat('ddMMyyHHmmss');
   static final intl.DateFormat defFormatSmallWithoutSeconds = intl.DateFormat('dd/MM/yy HH:mm');
   static final intl.DateFormat defFormatWithoutSeconds = intl.DateFormat('dd/MM/yyyy HH:mm');
   static final intl.DateFormat defFormat = intl.DateFormat('dd/MM/yyyy HH:mm:ss');
   static final intl.DateFormat defFormatAsDate = intl.DateFormat('dd/MM/yyyy');
+  static final intl.DateFormat defFormatAsDatePhp = intl.DateFormat('yyyy-MM-dd HH:mm:ss');
 
-  static String format(DateTime value) => defFormat.format(value);
+  static String format(DateTime value) => defFormatAsDate.format(value);
+  static String formatPhp(DateTime value) => defFormatAsDatePhp.format(value);
   static String formatFileName(DateTime value) => defFileNameFormat.format(value);
+  static String formatFileNameWithSeconds(DateTime value) => defFileNameWithSecondsFormat.format(value);
   static String formatAsDate(DateTime value) => defFormatAsDate.format(value);
   static String formatSmallWithoutSeconds(DateTime value) => defFormatSmallWithoutSeconds.format(value);
   static String formatWithoutSeconds(DateTime value) => defFormatWithoutSeconds.format(value);

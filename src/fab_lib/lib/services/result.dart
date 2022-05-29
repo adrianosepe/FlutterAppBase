@@ -25,15 +25,23 @@ class Result extends TypedResult<Object> {
 
   static Result exception(Exception ex) => error(ex.toString());
 
-  static Result success({Object? data, String? nessage}) => Result(status: EResultStatus.Ok, message: nessage, data: data);
+  static Result success({Object? data, String? message}) => Result(status: EResultStatus.Ok, message: message, data: data);
 
   static Result warning(String alert) => Result(status: EResultStatus.Warning, message: alert);
 
   factory Result.fromMap(Map<String, dynamic> map) {
+    final factory = TypedResult.factory;
+
     return Result(
-      details: map['details'] != null ? List<ResultInfo>.from(map['details']?.map((x) => ResultInfo.fromMap(x))) : null,
-      status: XEnum.fromMap(map['status']!.toInt(), EResultStatus.values)!,
-      message: map['message'],
+      details: factory.readDetails(map),
+      status: factory.readStatus(map),
+      message: factory.readMessage(map),
+      data: factory.readData(map),
     );
   }
+  static Result clone<TData, TInput>(IResult origin) => Result(
+        message: origin.message,
+        status: origin.status,
+        details: origin.details,
+      );
 }

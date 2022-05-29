@@ -11,6 +11,9 @@ class BaseRender extends BaseContext implements IRender {
     List<TextInputFormatter>? inputFormatters,
     TextInputType? keyboardType,
     required AsyncSnapshot<String?> snapshot,
+    bool obscureText = false,
+    String obscuringCharacter = '*',
+    TextAlign textAlign = TextAlign.left,
   }) {
     final maxLength = property is IMaxLenght ? (property as IMaxLenght).maxLength : null;
 
@@ -22,8 +25,10 @@ class BaseRender extends BaseContext implements IRender {
       textInputAction: TextInputAction.next,
       inputFormatters: inputFormatters,
       keyboardType: keyboardType,
-      obscureText: false,
+      obscureText: obscureText,
+      obscuringCharacter: obscuringCharacter,
       style: TextStyle(fontSize: 20),
+      textAlign: textAlign,
       maxLength: maxLength,
       decoration: InputDecoration(
         labelText: labelText ?? property.label,
@@ -48,42 +53,43 @@ class BaseRender extends BaseContext implements IRender {
     const TextStyle style = TextStyle(fontSize: 20.0);
 
     return StreamBuilder<List<T>?>(
-        stream: datasource.stream,
-        builder: (context, snapshotDS) {
-          final items = (snapshotDS.data ?? [])
-              .map(
-                (entry) => DropdownMenuItem<T>(
-                  value: entry,
-                  child: Text(
-                    entry.toString(),
-                    style: style,
-                  ),
+      stream: datasource.stream,
+      builder: (context, snapshotDS) {
+        final items = (snapshotDS.data ?? [])
+            .map(
+              (entry) => DropdownMenuItem<T>(
+                value: entry,
+                child: Text(
+                  entry.toString(),
+                  style: style,
                 ),
-              )
-              .toList();
+              ),
+            )
+            .toList();
 
-          return UiRoudedContainer(
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 10,
+        return ui.render.renderContainer(
+          child: Row(
+            children: [
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: DropdownButton<T>(
+                  value: snapshot.data,
+                  onChanged: property.setter,
+                  iconSize: 48,
+                  items: items,
+                  isExpanded: true,
                 ),
-                Expanded(
-                  child: DropdownButton<T>(
-                    value: snapshot.data,
-                    onChanged: property.setter,
-                    iconSize: 48,
-                    items: items,
-                    isExpanded: true,
-                  ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-              ],
-            ),
-          );
-        });
+              ),
+              SizedBox(
+                width: 10,
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -194,7 +200,7 @@ class BaseRender extends BaseContext implements IRender {
     return Container(
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
-          side: BorderSide(width: 2.0, style: BorderStyle.solid, color: Colors.black45),
+          side: BorderSide(width: 1.0, style: BorderStyle.solid, color: Colors.black45),
           borderRadius: BorderRadius.all(Radius.circular(5)),
         ),
       ),

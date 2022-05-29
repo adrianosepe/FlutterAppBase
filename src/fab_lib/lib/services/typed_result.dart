@@ -6,7 +6,10 @@ class TypedResult<TData> extends IResult {
   final EResultStatus status;
   final String? message;
 
+  static ResultFactory factory = GrappTecResultFactory();
+
   bool get ok => status == EResultStatus.Ok;
+  bool get nok => status != EResultStatus.Ok;
 
   TypedResult({
     this.data,
@@ -29,12 +32,21 @@ class TypedResult<TData> extends IResult {
     );
   }
 
+  static TypedResult<List<TData>> fromList<TData>(Map<String, dynamic> map, Func1<List<dynamic>, List<TData>> converter) {
+    return TypedResult<List<TData>>(
+      data: map['data'] is List ? converter(map['data']) : null,
+      details: factory.readDetails(map),
+      status: factory.readStatus(map),
+      message: factory.readMessage(map),
+    );
+  }
+
   factory TypedResult.fromMap(Map<String, dynamic> map, Func1<Map<String, dynamic>, TData> converter) {
     return TypedResult<TData>(
       data: map['data'] != null ? converter(map['data']) : null,
-      details: map['details'] != null ? List<ResultInfo>.from(map['details']?.map((x) => ResultInfo.fromMap(x))) : null,
-      status: XEnum.fromMap(map['status']!.toInt(), EResultStatus.values)!,
-      message: map['message'],
+      details: factory.readDetails(map),
+      status: factory.readStatus(map),
+      message: factory.readMessage(map),
     );
   }
 

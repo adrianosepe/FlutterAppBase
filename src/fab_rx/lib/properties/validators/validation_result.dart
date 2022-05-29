@@ -9,6 +9,9 @@ class ValidationResult {
 
   bool get success => _errors.length == 0;
 
+  bool get fail => !success;
+  String get failInfo => fail ? 'Há ${_errors.length} críticas, verifique!' : XString.empty;
+
   ValidationResult check<T>(
     Property<T> property, {
     Func1<T, String>? what,
@@ -39,8 +42,6 @@ class ValidationResult {
 
     return this;
   }
-
-  bool fail() => !success;
 
   @override
   String toString() => _errors.join(",\n");

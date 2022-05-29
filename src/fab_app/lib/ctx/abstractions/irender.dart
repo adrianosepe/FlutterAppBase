@@ -10,6 +10,9 @@ abstract class IRender {
     List<TextInputFormatter>? inputFormatters,
     TextInputType? keyboardType,
     required AsyncSnapshot<String?> snapshot,
+    bool obscureText = false,
+    String obscuringCharacter = '*',
+    TextAlign textAlign = TextAlign.left,
   });
 
   Widget renderDropdown<T>({

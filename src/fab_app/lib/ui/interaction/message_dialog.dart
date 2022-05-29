@@ -96,11 +96,11 @@ class MessageDialog {
 
   static Future<bool?> toast(
     String message, {
-    EToast length = EToast.LENGTH_LONG,
+    EToastLength length = EToastLength.Long,
   }) {
     return ft.Fluttertoast.showToast(
       msg: message,
-      toastLength: ft.Toast.values[EToast.values.indexOf(length)],
+      toastLength: ft.Toast.values[EToastLength.values.indexOf(length)],
       backgroundColor: Colors.red,
       textColor: Colors.white,
     );
@@ -134,5 +134,3 @@ class MessageDialog {
     return widgets;
   }
 }
-
-enum EToast { LENGTH_SHORT, LENGTH_LONG }

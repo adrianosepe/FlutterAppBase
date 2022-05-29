@@ -47,7 +47,7 @@ class BaseRender extends BaseContext implements IRender {
     required BuildContext context,
     required IProperty<T> property,
     required IProperty<List<T>> datasource,
-    String? hintText,
+    String? labelText,
     required AsyncSnapshot snapshot,
   }) {
     const TextStyle style = TextStyle(fontSize: 20.0);
@@ -97,42 +97,51 @@ class BaseRender extends BaseContext implements IRender {
     required BuildContext context,
     required IProperty<T> property,
     required IProperty<List<T>> datasource,
+    String? labelText,
     String? hintText,
+    bool isSearchable = true,
     required AsyncSnapshot snapshot,
   }) {
     return StreamBuilder<List<T>?>(
-        stream: datasource.stream,
-        builder: (context, snapshotDS) {
-          return DropdownSearch<T>(
-            selectedItem: snapshot.data,
-            onChanged: property.setter,
-            items: snapshotDS.data ?? [],
-            focusNode: HandleFocusNode.handle(isReadOnly: property.isReadOnly),
-            dropdownSearchBaseStyle: const TextStyle(fontSize: 20),
-            dropdownSearchDecoration: InputDecoration(
-              labelText: hintText ?? property.label,
-              errorText: snapshot.error?.toString(),
-              contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
-              ),
+      stream: datasource.stream,
+      builder: (context, snapshotDS) {
+        return DropdownSearch<T>(
+          selectedItem: snapshot.data,
+          onChanged: property.setter,
+          items: snapshotDS.data ?? <T>[],
+          mode: Mode.BOTTOM_SHEET,
+          showSearchBox: isSearchable,
+          focusNode: HandleFocusNode.handle(isReadOnly: property.isReadOnly),
+          showAsSuffixIcons: false,
+          dropdownBuilder: (context, selectedItem) =>
+              Text(selectedItem?.toString() ?? XString.empty, style: Theme.of(context).textTheme.subtitle1!.copyWith(fontSize: 20)),
+          dropdownSearchBaseStyle: const TextStyle(fontSize: 20),
+          dropdownSearchDecoration: InputDecoration(
+            labelText: labelText ?? property.label,
+            hintText: hintText ?? property.hint,
+            errorText: snapshot.error?.toString(),
+            contentPadding: const EdgeInsets.fromLTRB(20.0, 3.0, 20.0, 3.0),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5),
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 
   @override
   Widget renderSwitch({
     required BuildContext context,
     required IProperty<bool> property,
-    String? hintText,
+    String? labelText,
     required AsyncSnapshot<bool?> snapshot,
   }) {
     return SwitchListTile(
       value: snapshot.data ?? false,
       onChanged: property.setter,
       title: Text(
-        hintText ?? property.label ?? XString.empty,
+        labelText ?? property.label ?? XString.empty,
         style: const TextStyle(
           fontWeight: FontWeight.bold,
           color: Colors.red,
@@ -146,6 +155,35 @@ class BaseRender extends BaseContext implements IRender {
               maxLines: 3,
             )
           : Container(),
+    );
+  }
+
+  @override
+  Widget renderCheckbox({
+    required BuildContext context,
+    required IProperty<bool> property,
+    String? labelText,
+    required AsyncSnapshot<bool?> snapshot,
+    TextStyle? checkedTextStyle,
+    TextStyle? uncheckedTextStyle,
+  }) {
+    final style = property.value ?? false
+        ? checkedTextStyle ?? TextStyle(fontWeight: FontWeight.bold, color: Colors.black)
+        : uncheckedTextStyle ?? TextStyle(fontWeight: FontWeight.bold, color: Color(0xFFEE3126));
+
+    return Row(
+      children: [
+        Expanded(
+          child: Text(
+            labelText ?? property.label ?? XString.empty,
+            style: style,
+          ),
+        ),
+        Checkbox(
+          value: snapshot.data ?? false,
+          onChanged: property.setter,
+        )
+      ],
     );
   }
 

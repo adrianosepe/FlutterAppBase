@@ -24,6 +24,7 @@ class Property<TValue> implements IProperty<TValue> {
   set value(TValue? newValue) => subject.value = newValue;
 
   bool isReadOnly;
+  bool get hasValue => value != null;
 
   Function(TValue?) get setter => subject.sink.add;
 

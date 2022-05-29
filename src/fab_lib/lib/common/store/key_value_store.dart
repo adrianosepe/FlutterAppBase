@@ -32,6 +32,6 @@ class KeyValueStore {
   StringStoreProperty getStringProperty(String name, {String defValue = ''}) => StringStoreProperty(this, name, defValue: defValue);
   DateTimeStoreProperty getDateTimeProperty(String name, {DateTime? defValue}) => DateTimeStoreProperty(this, name, defValue: defValue);
 
-  JsonStoreProperty<T> getJsonProperty<T>(String name, Func1<T, String> toJson, Func1<String?, T?> fromJson) =>
+  JsonStoreProperty<T> getJsonProperty<T>(String name, Func1<T?, String> toJson, Func1<String?, T?> fromJson) =>
       JsonStoreProperty<T>(this, name, toJson, fromJson);
 }

@@ -3,9 +3,9 @@
 part of fab_app;
 
 class UiAsyncButton<TData> extends StatefulWidget {
-  final ActionCancelEventHandler<TData> onExecute;
+  final ActionCancelEventHandler<TData>? onExecute;
   final Act1<TData>? onSuccess;
-  final Act1<TData>? onFail;
+  final Act1<TData?>? onFail;
   final Widget? child;
   final Color? color;
   final Color? textColor;
@@ -35,30 +35,32 @@ class _UiAsyncButtonState<TData> extends State<UiAsyncButton<TData>> {
         textColor: widget.textColor,
         padding: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        onPressed: () async {
-          if (_state == EButtonState.Running) {
-            return;
-          }
+        onPressed: widget.onExecute == null
+            ? null
+            : () async {
+                if (_state == EButtonState.Running) {
+                  return;
+                }
 
-          setState(() {
-            _state = EButtonState.Running;
-          });
+                setState(() {
+                  _state = EButtonState.Running;
+                });
 
-          final args = ActionCancelEventsArgs<TData>();
-          await widget.onExecute(this, args);
+                final args = ActionCancelEventsArgs<TData>();
+                await widget.onExecute!(this, args);
 
-          setState(() {
-            _state = args.cancel ? EButtonState.Fail : EButtonState.Success;
-          });
+                setState(() {
+                  _state = args.cancel ? EButtonState.Fail : EButtonState.Success;
+                });
 
-          await Future.delayed(Duration(milliseconds: 850));
+                await Future.delayed(Duration(milliseconds: 850));
 
-          if (args.cancel) {
-            widget.onFail?.call(args.data!);
-          } else {
-            widget.onSuccess?.call(args.data!);
-          }
-        });
+                if (args.cancel) {
+                  widget.onFail?.call(args.data);
+                } else {
+                  widget.onSuccess?.call(args.data!);
+                }
+              });
   }
 
   Widget setUpButtonChild() {

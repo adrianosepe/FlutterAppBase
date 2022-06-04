@@ -39,7 +39,9 @@ class Property<TValue> implements IProperty<TValue> {
   bool exists() => value != null;
   bool isNull() => value == null;
 
-  close() {
-    subject.close();
+  void addError(Object error) {
+    subject.addError(error);
   }
+
+  Future<void> close() => subject.close();
 }

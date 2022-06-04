@@ -8,6 +8,8 @@ abstract class IHdi {
   Future<void> information(String information);
   Future<void> toastInformation(String information);
 
+  Future<void> notifyFeatureInDevelop();
+
   Future<void> showProgress({String? message});
   Future<void> hideProgress();
 

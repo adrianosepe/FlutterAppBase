@@ -1,7 +1,7 @@
 part of fab_rx;
 
 class CollectionProperty<TItem> extends Property<List<TItem>> {
-  List<TItem> get _secItems => super.value ?? <TItem>[];
+  List<TItem> get _items => super.value ?? <TItem>[];
 
   CollectionProperty({
     List<TItem>? value,
@@ -19,21 +19,31 @@ class CollectionProperty<TItem> extends Property<List<TItem>> {
           transformer: transformer,
         );
 
-  int get length => _secItems.length;
+  int get length => _items.length;
 
   void add(TItem item) {
-    final items = List<TItem>.from(_secItems)..add(item);
+    final items = List<TItem>.from(_items)..add(item);
 
     value = items;
   }
 
+  void addAll(Iterable<TItem> items) {
+    final news = List<TItem>.from(_items)..addAll(items);
+
+    value = news;
+  }
+
+  void replace(Iterable<TItem>? items) {
+    value = items?.toList() ?? <TItem>[];
+  }
+
   bool remove(TItem item) {
-    final removed = _secItems.remove(item);
+    final removed = _items.remove(item);
     if (!removed) {
       return false;
     }
 
-    final items = List<TItem>.from(_secItems);
+    final items = List<TItem>.from(_items);
 
     value = items;
 

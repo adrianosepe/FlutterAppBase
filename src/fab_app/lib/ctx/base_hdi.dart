@@ -23,6 +23,11 @@ class BaseHdi extends BaseContext implements IHdi {
   }
 
   @override
+  Future<void> notifyFeatureInDevelop() {
+    return toastInformation('Em desenvolvimento! ;)');
+  }
+
+  @override
   Future<bool> handlingOnError(IResult result) async {
     if (result.ok) {
       return false;

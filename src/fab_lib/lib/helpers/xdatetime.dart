@@ -7,10 +7,11 @@ class XDateTime {
   static final intl.DateFormat defFormatWithoutSeconds = intl.DateFormat('dd/MM/yyyy HH:mm');
   static final intl.DateFormat defFormat = intl.DateFormat('dd/MM/yyyy HH:mm:ss');
   static final intl.DateFormat defFormatAsDate = intl.DateFormat('dd/MM/yyyy');
-  static final intl.DateFormat defFormatAsDatePhp = intl.DateFormat('yyyy-MM-dd HH:mm:ss');
+  static final intl.DateFormat defFormatAsDateTimePhp = intl.DateFormat('yyyy-MM-dd HH:mm:ss');
+  static final intl.DateFormat defFormatAsDatePhp = intl.DateFormat('yyyy-MM-dd');
 
   static String format(DateTime value) => defFormatAsDate.format(value);
-  static String formatPhp(DateTime value) => defFormatAsDatePhp.format(value);
+  static String formatPhp(DateTime value) => defFormatAsDateTimePhp.format(value);
   static String formatFileName(DateTime value) => defFileNameFormat.format(value);
   static String formatFileNameWithSeconds(DateTime value) => defFileNameWithSecondsFormat.format(value);
   static String formatAsDate(DateTime value) => defFormatAsDate.format(value);
@@ -32,6 +33,20 @@ class XDateTime {
       } catch (ex) {
         return defFormatAsDate.parse(value, utc);
       }
+    }
+  }
+
+  static DateTime? parseAsPhp(String value, {bool utc = false}) {
+    try {
+      if (XString.isNullOrEmpty(value)) {
+        return null;
+      }
+
+      final dt = defFormatAsDatePhp.parse(value, utc);
+
+      return dt;
+    } catch (ex) {
+      return null;
     }
   }
 

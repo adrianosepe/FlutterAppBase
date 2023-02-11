@@ -1,7 +1,7 @@
 part of fab_app;
 
-class Option {
-  final int id;
+class Option<TKey> {
+  final TKey id;
   final String description;
 
   Option(this.id, this.description);

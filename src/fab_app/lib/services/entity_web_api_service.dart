@@ -84,25 +84,27 @@ abstract class EntityWebApiService extends BaseContext {
   }
 
   Future<Result> internalPostFormMultipartExecute(String url, {List<MultipartFile>? files, Map<String, String>? body, String? token}) {
-    return _internalDecode(() async {
-      final request = http.MultipartRequest('POST', Uri.parse(url));
+    return _internalDecode(
+      () async {
+        final request = http.MultipartRequest('POST', Uri.parse(url));
 
-      if (body != null) {
-        request.fields.addAll(body);
-      }
+        if (body != null) {
+          request.fields.addAll(body);
+        }
 
-      request.files.addAll(files ?? []);
+        request.files.addAll(files ?? []);
 
-      final headers = _getHeaders(
-        url,
-        contentType: 'application/x-www-form-urlencoded',
-        token: token ?? evt.authToken,
-      );
-      request.headers.addAll(headers);
+        final headers = _getHeaders(
+          url,
+          contentType: 'application/x-www-form-urlencoded',
+          token: token ?? evt.authToken,
+        );
+        request.headers.addAll(headers);
 
-      final streamedResponse = await request.send();
-      return http.Response.fromStream(streamedResponse);
-    });
+        final streamedResponse = await request.send();
+        return http.Response.fromStream(streamedResponse);
+      },
+    );
   }
 
   Future<TypedResult<TModel>> _internalDecodeSingle<TModel>(Func<Future<Response>> funcExecute, Func1<Map<String, dynamic>, TModel> translate) async {
@@ -201,12 +203,14 @@ abstract class EntityWebApiService extends BaseContext {
     if (token == null) {
       return {
         'Content-Type': contentType,
+        'Accept': 'application/json',
         'Host': host,
       };
     }
 
     Map<String, String> headers = {
       'Content-Type': contentType,
+      'Accept': 'application/json',
       'Host': host,
       'Authorization': 'Bearer $token',
     };

@@ -69,7 +69,7 @@ class MessageDialog {
     BuildContext context,
     String message, {
     String title = 'Informação',
-    String okBtnText = 'Cancelar',
+    String okBtnText = 'Ok',
     List? details,
   }) async {
     return showDialog<void>(

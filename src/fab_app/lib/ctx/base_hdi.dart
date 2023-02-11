@@ -17,7 +17,7 @@ class BaseHdi extends BaseContext implements IHdi {
     await ft.Fluttertoast.showToast(
       msg: information,
       toastLength: ft.Toast.LENGTH_SHORT,
-      backgroundColor: Colors.blue,
+      backgroundColor: Color.fromARGB(0xFF, 0x2E, 0x34, 0x44),
       textColor: Colors.white,
     );
   }

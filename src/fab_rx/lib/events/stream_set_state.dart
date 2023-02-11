@@ -5,5 +5,5 @@ class StreamSetState {
 
   Stream get stream => _property.stream;
 
-  void setState() => _property.value = _property.value! + 1;
+  Future<void> setState() => Future.value(_property.value = _property.value! + 1);
 }

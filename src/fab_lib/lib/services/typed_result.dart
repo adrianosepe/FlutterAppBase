@@ -84,9 +84,9 @@ class TypedResult<TData> extends IResult {
 
   static TypedResult<TData> exception<TData>(Exception ex) => error(ex.toString());
 
-  static TypedResult<TData> success<TData>({TData? data, String? nessage}) => TypedResult<TData>(
+  static TypedResult<TData> success<TData>({TData? data, String? message}) => TypedResult<TData>(
         data: data,
-        message: nessage,
+        message: message,
         status: EResultStatus.Ok,
       );
 

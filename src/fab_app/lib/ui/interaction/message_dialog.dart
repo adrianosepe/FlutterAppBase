@@ -116,7 +116,7 @@ class MessageDialog {
     widgets.add(
       Text(
         message,
-        style: Theme.of(context).textTheme.subtitle2,
+        style: Theme.of(context).textTheme.titleSmall,
       ),
     );
 
@@ -125,7 +125,7 @@ class MessageDialog {
         widgets.add(
           Text(
             msg,
-            style: Theme.of(context).textTheme.subtitle2,
+            style: Theme.of(context).textTheme.titleSmall,
           ),
         );
       },

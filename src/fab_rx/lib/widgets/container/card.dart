@@ -17,10 +17,10 @@ class UiCard extends UiView {
   @override
   Widget build(BuildContext context) {
     return ui.render.renderCard(
-      child: child,
       color: color,
       margin: margin,
       padding: padding,
+      child: child,
     );
   }
 }

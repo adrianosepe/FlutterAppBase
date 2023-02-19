@@ -8,7 +8,7 @@ homepage: https://github.com/adrianosepe
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: '>=2.19.2 <3.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
@@ -21,6 +21,8 @@ dependencies:
   sn_progress_dialog: ^1.0.3
   dropdown_search: ^2.0.1
   gap: ^2.0.0
+
+  rxdart: ^0.27.7
 
   fab_lib:
     path: ../fab_lib

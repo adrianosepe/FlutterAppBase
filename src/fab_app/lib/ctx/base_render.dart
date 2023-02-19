@@ -113,8 +113,12 @@ class BaseRender extends BaseContext implements IRender {
           showSearchBox: isSearchable,
           focusNode: HandleFocusNode.handle(isReadOnly: property.isReadOnly),
           showAsSuffixIcons: false,
-          dropdownBuilder: (context, selectedItem) =>
-              Text(selectedItem?.toString() ?? XString.empty, style: Theme.of(context).textTheme.subtitle1!.copyWith(fontSize: 20)),
+          dropdownBuilder: (context, selectedItem) {
+            return Text(
+              selectedItem?.toString() ?? XString.empty,
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: 20),
+            );
+          },
           dropdownSearchBaseStyle: const TextStyle(fontSize: 20),
           dropdownSearchDecoration: InputDecoration(
             labelText: labelText ?? property.label,
@@ -168,8 +172,16 @@ class BaseRender extends BaseContext implements IRender {
     TextStyle? uncheckedTextStyle,
   }) {
     final style = property.value ?? false
-        ? checkedTextStyle ?? TextStyle(fontWeight: FontWeight.bold, color: Colors.black)
-        : uncheckedTextStyle ?? TextStyle(fontWeight: FontWeight.bold, color: Color(0xFFEE3126));
+        ? checkedTextStyle ??
+            TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            )
+        : uncheckedTextStyle ??
+            TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color(0xFFEE3126),
+            );
 
     return Row(
       children: [
@@ -191,21 +203,50 @@ class BaseRender extends BaseContext implements IRender {
   Widget renderButton({
     required BuildContext context,
     required String text,
-    required VoidCallback onPressed,
-    required Color color,
+    VoidCallback? onPressed,
+    Color? color,
+  }) {
+    return renderContainerButton(
+      context: context,
+      widget: Text(
+        text,
+        style: ui.sty.ofText.titleLarge!.copyWith(color: Colors.white),
+      ),
+    );
+  }
+
+  @override
+  Widget renderContainerButton({
+    required BuildContext context,
+    required Widget widget,
+    VoidCallback? onPressed,
+    Color? color,
   }) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         minimumSize: Size.fromHeight(50),
-        primary: ui.sty.primaryColor,
+        backgroundColor: color ?? ui.sty.primaryColor,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(5)),
         ),
       ),
       onPressed: onPressed,
+      child: widget,
+    );
+  }
+
+  @override
+  Widget renderAnimatedButton({
+    required BuildContext context,
+    required String text,
+    ActionControllerCallback? onPressed,
+    Color? color,
+  }) {
+    return AnimatedButton(
+      onPressed: onPressed,
       child: Text(
         text,
-        style: ui.sty.ofText.headline6!.copyWith(color: Colors.white),
+        style: ui.sty.ofText.titleLarge!.copyWith(color: Colors.white),
       ),
     );
   }

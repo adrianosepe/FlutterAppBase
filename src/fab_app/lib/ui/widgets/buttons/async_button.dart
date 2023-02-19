@@ -1,6 +1,6 @@
-// ignore_for_file: deprecated_member_use
-
 part of fab_app;
+
+// ignore_for_file: deprecated_member_use
 
 class UiAsyncButton<TData> extends StatefulWidget {
   final ActionCancelEventHandler<TData>? onExecute;
@@ -29,44 +29,54 @@ class _UiAsyncButtonState<TData> extends State<UiAsyncButton<TData>> {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-        child: setUpButtonChild(),
-        color: widget.color,
-        textColor: widget.textColor,
+    return TextButton(
+      child: setUpButtonChild(),
+      style: TextButton.styleFrom(
+        primary: widget.color,
+        foregroundColor: widget.textColor,
+        // backgroundColor: Colors.blue,
         padding: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        onPressed: widget.onExecute == null
-            ? null
-            : () async {
-                if (_state == EButtonState.Running) {
-                  return;
-                }
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+        ),
+      ),
+      onPressed: widget.onExecute == null
+          ? null
+          : () async {
+              if (_state == EButtonState.Running) {
+                return;
+              }
 
-                setState(() {
+              setState(
+                () {
                   _state = EButtonState.Running;
-                });
+                },
+              );
 
-                final args = ActionCancelEventsArgs<TData>();
-                await widget.onExecute!(this, args);
+              final args = ActionCancelEventsArgs<TData>();
+              await widget.onExecute!(this, args);
 
-                setState(() {
+              setState(
+                () {
                   _state = args.cancel ? EButtonState.Fail : EButtonState.Success;
-                });
+                },
+              );
 
-                await Future.delayed(Duration(milliseconds: 850));
+              await Future.delayed(Duration(milliseconds: 850));
 
-                if (args.cancel) {
-                  widget.onFail?.call(args.data);
-                } else {
-                  widget.onSuccess?.call(args.data!);
-                }
-              });
+              if (args.cancel) {
+                widget.onFail?.call(args.data);
+              } else {
+                widget.onSuccess?.call(args.data!);
+              }
+            },
+    );
   }
 
   Widget setUpButtonChild() {
     if (_state == EButtonState.Normal) {
       return Row(
-        children: <Widget>[
+        children: [
           SizedBox(
             width: 14,
             height: 20,
@@ -79,7 +89,7 @@ class _UiAsyncButtonState<TData> extends State<UiAsyncButton<TData>> {
       );
     } else if (_state == EButtonState.Running) {
       return Row(
-        children: <Widget>[
+        children: [
           Container(
             child: CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
@@ -95,7 +105,7 @@ class _UiAsyncButtonState<TData> extends State<UiAsyncButton<TData>> {
       );
     } else {
       return Row(
-        children: <Widget>[
+        children: [
           Container(
             child: Icon(_state == EButtonState.Success ? Icons.check : Icons.error, color: widget.textColor),
             width: 20,

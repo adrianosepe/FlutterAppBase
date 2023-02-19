@@ -52,8 +52,22 @@ abstract class IRender {
   Widget renderButton({
     required BuildContext context,
     required String text,
-    required VoidCallback onPressed,
-    required Color color,
+    VoidCallback? onPressed,
+    Color? color,
+  });
+
+  Widget renderContainerButton({
+    required BuildContext context,
+    required Widget widget,
+    VoidCallback? onPressed,
+    Color? color,
+  });
+
+  Widget renderAnimatedButton({
+    required BuildContext context,
+    required String text,
+    ActionControllerCallback? onPressed,
+    Color? color,
   });
 
   Widget renderCard({

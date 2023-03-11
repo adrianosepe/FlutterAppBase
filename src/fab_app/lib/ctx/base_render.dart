@@ -208,6 +208,7 @@ class BaseRender extends BaseContext implements IRender {
   }) {
     return renderContainerButton(
       context: context,
+      onPressed: onPressed,
       widget: Text(
         text,
         style: ui.sty.ofText.titleLarge!.copyWith(color: Colors.white),

@@ -10,7 +10,7 @@ class XDateTime {
   static final intl.DateFormat defFormatAsDateTimePhp = intl.DateFormat('yyyy-MM-dd HH:mm:ss');
   static final intl.DateFormat defFormatAsDatePhp = intl.DateFormat('yyyy-MM-dd');
 
-  static String format(DateTime value) => defFormatAsDate.format(value);
+  static String format(DateTime value) => defFormat.format(value);
   static String formatPhp(DateTime value) => defFormatAsDateTimePhp.format(value);
   static String formatFileName(DateTime value) => defFileNameFormat.format(value);
   static String formatFileNameWithSeconds(DateTime value) => defFileNameWithSecondsFormat.format(value);

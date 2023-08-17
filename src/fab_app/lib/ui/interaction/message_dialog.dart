@@ -94,18 +94,6 @@ class MessageDialog {
     );
   }
 
-  static Future<bool?> toast(
-    String message, {
-    EToastLength length = EToastLength.Long,
-  }) {
-    return ft.Fluttertoast.showToast(
-      msg: message,
-      toastLength: ft.Toast.values[EToastLength.values.indexOf(length)],
-      backgroundColor: Colors.red,
-      textColor: Colors.white,
-    );
-  }
-
   static _createMessageContent(
     BuildContext context,
     String message,

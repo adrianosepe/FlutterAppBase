@@ -17,7 +17,7 @@ dependencies:
 
   intl: ^0.17.0
 
-  fluttertoast: ^8.0.8
+  motion_toast: ^2.6.5
   sn_progress_dialog: ^1.0.3
   dropdown_search: ^2.0.1
   gap: ^2.0.0

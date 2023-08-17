@@ -14,12 +14,15 @@ class BaseHdi extends BaseContext implements IHdi {
 
   @override
   Future<void> toastInformation(String information) async {
-    await ft.Fluttertoast.showToast(
-      msg: information,
-      toastLength: ft.Toast.LENGTH_SHORT,
-      backgroundColor: Color.fromARGB(0xFF, 0x2E, 0x34, 0x44),
-      textColor: Colors.white,
-    );
+    return MotionToast.success(
+      description: Text(
+        information,
+        style: TextStyle(fontSize: 12),
+      ),
+      layoutOrientation: ToastOrientation.rtl,
+      animationType: AnimationType.fromRight,
+      dismissable: true,
+    ).show(context);
   }
 
   @override
@@ -33,12 +36,15 @@ class BaseHdi extends BaseContext implements IHdi {
       return false;
     }
 
-    await ft.Fluttertoast.showToast(
-      msg: result.message ?? XString.empty,
-      toastLength: ft.Toast.LENGTH_SHORT,
-      backgroundColor: Colors.red,
-      textColor: Colors.white,
-    );
+    MotionToast.error(
+      description: Text(
+        result.message ?? XString.empty,
+        style: TextStyle(fontSize: 12),
+      ),
+      layoutOrientation: ToastOrientation.rtl,
+      animationType: AnimationType.fromRight,
+      dismissable: true,
+    ).show(context);
 
     return true;
   }

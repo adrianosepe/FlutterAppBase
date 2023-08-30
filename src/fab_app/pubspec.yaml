@@ -20,7 +20,7 @@ dependencies:
   fluttertoast: ^8.0.8
   sn_progress_dialog: ^1.0.3
   dropdown_search: ^2.0.1
-  gap: ^2.0.1
+  gap: ^2.0.2
 
   fab_lib:
     path: ../fab_lib

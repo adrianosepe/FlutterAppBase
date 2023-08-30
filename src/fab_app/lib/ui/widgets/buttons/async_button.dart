@@ -30,37 +30,38 @@ class _UiAsyncButtonState<TData> extends State<UiAsyncButton<TData>> {
   @override
   Widget build(BuildContext context) {
     return FlatButton(
-        child: setUpButtonChild(),
-        color: widget.color,
-        textColor: widget.textColor,
-        padding: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        onPressed: widget.onExecute == null
-            ? null
-            : () async {
-                if (_state == EButtonState.Running) {
-                  return;
-                }
+      child: setUpButtonChild(),
+      color: widget.color,
+      textColor: widget.textColor,
+      padding: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+      onPressed: widget.onExecute == null
+          ? null
+          : () async {
+              if (_state == EButtonState.Running) {
+                return;
+              }
 
-                setState(() {
-                  _state = EButtonState.Running;
-                });
-
-                final args = ActionCancelEventsArgs<TData>();
-                await widget.onExecute!(this, args);
-
-                setState(() {
-                  _state = args.cancel ? EButtonState.Fail : EButtonState.Success;
-                });
-
-                await Future.delayed(Duration(milliseconds: 850));
-
-                if (args.cancel) {
-                  widget.onFail?.call(args.data);
-                } else {
-                  widget.onSuccess?.call(args.data!);
-                }
+              setState(() {
+                _state = EButtonState.Running;
               });
+
+              final args = ActionCancelEventsArgs<TData>();
+              await widget.onExecute!(this, args);
+
+              setState(() {
+                _state = args.cancel ? EButtonState.Fail : EButtonState.Success;
+              });
+
+              await Future.delayed(Duration(milliseconds: 850));
+
+              if (args.cancel) {
+                widget.onFail?.call(args.data);
+              } else {
+                widget.onSuccess?.call(args.data!);
+              }
+            },
+    );
   }
 
   Widget setUpButtonChild() {

@@ -32,7 +32,7 @@ class _UiAsyncButtonState<TData> extends State<UiAsyncButton<TData>> {
     return TextButton(
       child: setUpButtonChild(),
       style: TextButton.styleFrom(
-        primary: widget.color,
+        backgroundColor: widget.color,
         foregroundColor: widget.textColor,
         // backgroundColor: Colors.blue,
         padding: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
@@ -58,7 +58,8 @@ class _UiAsyncButtonState<TData> extends State<UiAsyncButton<TData>> {
 
               setState(
                 () {
-                  _state = args.cancel ? EButtonState.Fail : EButtonState.Success;
+                  _state =
+                      args.cancel ? EButtonState.Fail : EButtonState.Success;
                 },
               );
 
@@ -107,7 +108,9 @@ class _UiAsyncButtonState<TData> extends State<UiAsyncButton<TData>> {
       return Row(
         children: [
           Container(
-            child: Icon(_state == EButtonState.Success ? Icons.check : Icons.error, color: widget.textColor),
+            child: Icon(
+                _state == EButtonState.Success ? Icons.check : Icons.error,
+                color: widget.textColor),
             width: 20,
             height: 20,
           ),

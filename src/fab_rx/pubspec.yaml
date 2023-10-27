@@ -14,19 +14,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  provider: ^6.0.1
+  
+  intl: ^0.18.1
   rxdart: ^0.27.3
+  provider: ^6.0.1
+
   extended_masked_text: ^2.3.1
-  intl: ^0.17.0
 
   fab_lib:
     path: ../fab_lib/
   fab_app:
     path: ../fab_app/
-
-  # mask_shifter: ^0.1.0
-  # flutter_masked_text: ^0.8.0
-  # smart_select: ^3.0.3
 
 dev_dependencies:
   flutter_test:

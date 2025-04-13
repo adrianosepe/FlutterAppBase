@@ -15,8 +15,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  intl: ^0.18.1
   rxdart: ^0.27.7
+
+  http: ^1.0.0
 
   gap: ^3.0.1
   dropdown_search: ^2.0.1
@@ -30,9 +31,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  flutter_localizations:
-    sdk: flutter
+  flutter_lints: ^2.0.0
+  dependency_validator: ^3.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -74,14 +74,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-
-  # This section identifies your Flutter project as a module meant for
-  # embedding in a native host app.  These identifiers should _not_ ordinarily
-  # be changed after generation - they are used to ensure that the tooling can
-  # maintain consistency when adding or modifying assets and plugins.
-  # They also do not have any bearing on your native host application's
-  # identifiers, which may be completely independent or the same as these.
-  module:
-    androidX: true
-    androidPackage: com.grapptec.fab.app
-    iosBundleIdentifier: com.grapptec.fab.app

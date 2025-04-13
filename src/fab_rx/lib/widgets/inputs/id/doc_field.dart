@@ -17,26 +17,26 @@ class UiDocField extends UiMaskField {
 
   static String getMaskAsStr(EDocType docType) {
     switch (docType) {
-      case EDocType.Cpf:
+      case EDocType.cpf:
         return '000.000.000-00';
-      case EDocType.Cnpj:
+      case EDocType.cnpj:
         return '00.000.000/0000-00';
-      case EDocType.Rg:
+      case EDocType.rg:
         return '000000000000000';
-      case EDocType.InscricaoEstadual:
+      case EDocType.inscricaoEstadual:
         return '000000000000000';
-      case EDocType.Cnh:
+      case EDocType.cnh:
         return '000000000000000';
     }
   }
 
   static TextInputType? getKeyboardType(EDocType docType) {
     switch (docType) {
-      case EDocType.Cpf:
-      case EDocType.Cnpj:
-      case EDocType.Rg:
-      case EDocType.InscricaoEstadual:
-      case EDocType.Cnh:
+      case EDocType.cpf:
+      case EDocType.cnpj:
+      case EDocType.rg:
+      case EDocType.inscricaoEstadual:
+      case EDocType.cnh:
         return TextInputType.number;
     }
   }

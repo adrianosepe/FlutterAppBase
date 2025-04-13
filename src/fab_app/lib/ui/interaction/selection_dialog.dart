@@ -13,7 +13,7 @@ class SelectionDialog {
                 .map(
                   (e) => ListTile(
                     leading: Icon(e.icon, color: Colors.white),
-                    title: Text(e.text, style: TextStyle(fontSize: 22)),
+                    title: Text(e.text, style: const TextStyle(fontSize: 22)),
                     onTap: () => Navigator.of(context).pop(e.value),
                   ),
                 )

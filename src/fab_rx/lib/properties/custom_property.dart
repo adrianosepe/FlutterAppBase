@@ -1,8 +1,8 @@
 part of fab_rx;
 
 class LocationProperty extends Property<LocationData> {
-  String? get state => this.value?.state;
-  String? get city => this.value?.city;
+  String? get state => value?.state;
+  String? get city => value?.city;
 
   LocationProperty({
     String? label,
@@ -17,20 +17,20 @@ class LocationProperty extends Property<LocationData> {
         );
 
   void update(String state, String city) {
-    this.value = LocationData(
+    value = LocationData(
       state: state,
       city: city,
     );
   }
 
   void reset() {
-    this.value = LocationData();
+    value = LocationData();
   }
 }
 
 class DeviceTypeProperty extends Property<DeviceTypeData> {
-  String? get brand => this.value?.brand;
-  String? get model => this.value?.model;
+  String? get brand => value?.brand;
+  String? get model => value?.model;
 
   DeviceTypeProperty({
     String? label,
@@ -45,14 +45,14 @@ class DeviceTypeProperty extends Property<DeviceTypeData> {
         );
 
   void update(String brand, String model) {
-    this.value = DeviceTypeData(
+    value = DeviceTypeData(
       brand: brand,
       model: model,
     );
   }
 
   void reset() {
-    this.value = DeviceTypeData();
+    value = DeviceTypeData();
   }
 }
 

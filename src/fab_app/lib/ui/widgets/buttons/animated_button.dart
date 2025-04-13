@@ -149,13 +149,13 @@ class RoundedLoadingButtonState extends State<RoundedLoadingButton> with TickerP
   late Animation _bounceAnimation;
   late Animation _borderAnimation;
 
-  final _state = BehaviorSubject<EButtonState>.seeded(EButtonState.Normal);
+  final _state = BehaviorSubject<EButtonState>.seeded(EButtonState.normal);
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    Widget _check = Container(
+    Widget lCheck = Container(
       alignment: FractionalOffset.center,
       decoration: BoxDecoration(
         color: widget.successColor ?? theme.primaryColor,
@@ -173,7 +173,7 @@ class RoundedLoadingButtonState extends State<RoundedLoadingButton> with TickerP
           : null,
     );
 
-    Widget _cross = Container(
+    Widget lCross = Container(
       alignment: FractionalOffset.center,
       decoration: BoxDecoration(
         color: widget.errorColor,
@@ -191,7 +191,7 @@ class RoundedLoadingButtonState extends State<RoundedLoadingButton> with TickerP
           : null,
     );
 
-    Widget _loader = SizedBox(
+    Widget lLoader = SizedBox(
       height: widget.loaderSize,
       width: widget.loaderSize,
       child: CircularProgressIndicator(
@@ -205,12 +205,12 @@ class RoundedLoadingButtonState extends State<RoundedLoadingButton> with TickerP
       builder: (context, snapshot) {
         return AnimatedSwitcher(
           duration: const Duration(milliseconds: 200),
-          child: snapshot.data == EButtonState.Running ? _loader : widget.child,
+          child: snapshot.data == EButtonState.running ? lLoader : widget.child,
         );
       },
     );
 
-    final _btn = ButtonTheme(
+    final lBtn = ButtonTheme(
       disabledColor: widget.disabledColor,
       padding: const EdgeInsets.all(0),
       child: ElevatedButton(
@@ -233,11 +233,11 @@ class RoundedLoadingButtonState extends State<RoundedLoadingButton> with TickerP
     return SizedBox(
       height: widget.height,
       child: Center(
-        child: _state.value == EButtonState.Fail
-            ? _cross
-            : _state.value == EButtonState.Success
-                ? _check
-                : _btn,
+        child: _state.value == EButtonState.fail
+            ? lCross
+            : _state.value == EButtonState.success
+                ? lCheck
+                : lBtn,
       ),
     );
   }
@@ -345,7 +345,7 @@ class RoundedLoadingButtonState extends State<RoundedLoadingButton> with TickerP
       return;
     }
 
-    _state.sink.add(EButtonState.Running);
+    _state.sink.add(EButtonState.running);
 
     _borderController.forward();
     _buttonController.forward();
@@ -360,7 +360,7 @@ class RoundedLoadingButtonState extends State<RoundedLoadingButton> with TickerP
       return;
     }
 
-    _state.sink.add(EButtonState.Normal);
+    _state.sink.add(EButtonState.normal);
 
     _buttonController.reverse();
     _borderController.reverse();
@@ -371,7 +371,7 @@ class RoundedLoadingButtonState extends State<RoundedLoadingButton> with TickerP
       return;
     }
 
-    _state.sink.add(EButtonState.Success);
+    _state.sink.add(EButtonState.success);
 
     _checkButtonControler.forward();
   }
@@ -381,7 +381,7 @@ class RoundedLoadingButtonState extends State<RoundedLoadingButton> with TickerP
       return;
     }
 
-    _state.sink.add(EButtonState.Fail);
+    _state.sink.add(EButtonState.fail);
 
     _checkButtonControler.forward();
   }
@@ -395,7 +395,7 @@ class RoundedLoadingButtonState extends State<RoundedLoadingButton> with TickerP
       return;
     }
 
-    _state.sink.add(EButtonState.Normal);
+    _state.sink.add(EButtonState.normal);
 
     unawaited(_buttonController.reverse());
     unawaited(_borderController.reverse());

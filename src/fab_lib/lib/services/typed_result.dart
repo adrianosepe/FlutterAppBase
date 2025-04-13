@@ -2,13 +2,17 @@ part of fab_lib;
 
 class TypedResult<TData> extends IResult {
   final TData? data;
+  @override
   final List<ResultInfo>? details;
+  @override
   final EResultStatus status;
+  @override
   final String? message;
 
   static ResultFactory factory = GrappTecResultFactory();
 
-  bool get ok => status == EResultStatus.Ok;
+  @override
+  bool get ok => status == EResultStatus.ok;
   bool get nok => !ok;
 
   TypedResult({
@@ -31,6 +35,25 @@ class TypedResult<TData> extends IResult {
       message: message ?? this.message,
     );
   }
+
+  // FLEXIBILIZAR PARA RAW INTERATIONS
+  // static TypedResult<List<TData>> fromList<TData>(List<dynamic> data, Func1<List<dynamic>, List<TData>> converter) {
+  //   return TypedResult<List<TData>>(
+  //     data: converter(data),
+  //     details: null,
+  //     status: EResultStatus.ok,
+  //     message: null,
+  //   );
+  // }
+
+  // factory TypedResult.fromMap(Map<String, dynamic> map, Func1<Map<String, dynamic>, TData> converter) {
+  //   return TypedResult<TData>(
+  //     data: converter(factory.readData(map) as Map<String, dynamic>),
+  //     details: factory.readDetails(map),
+  //     status: factory.readStatus(map),
+  //     message: factory.readMessage(map),
+  //   );
+  // }
 
   static TypedResult<List<TData>> fromList<TData>(Map<String, dynamic> map, Func1<List<dynamic>, List<TData>> converter) {
     return TypedResult<List<TData>>(
@@ -78,7 +101,7 @@ class TypedResult<TData> extends IResult {
 
   static TypedResult<TData> error<TData>(String error, {List<ResultInfo>? details}) => TypedResult<TData>(
         message: error,
-        status: EResultStatus.Error,
+        status: EResultStatus.error,
         details: details,
       );
 
@@ -87,11 +110,11 @@ class TypedResult<TData> extends IResult {
   static TypedResult<TData> success<TData>({TData? data, String? message}) => TypedResult<TData>(
         data: data,
         message: message,
-        status: EResultStatus.Ok,
+        status: EResultStatus.ok,
       );
 
   static TypedResult<TData> warning<TData>(String alert) => TypedResult<TData>(
         message: alert,
-        status: EResultStatus.Warning,
+        status: EResultStatus.warning,
       );
 }

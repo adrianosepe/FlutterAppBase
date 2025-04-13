@@ -9,8 +9,9 @@ class UiAsyncButton<TData> extends StatefulWidget {
   final Widget? child;
   final Color? color;
   final Color? textColor;
+  final EdgeInsetsGeometry? padding;
 
-  UiAsyncButton({
+  const UiAsyncButton({
     Key? key,
     required this.onExecute,
     this.onSuccess,
@@ -18,108 +19,117 @@ class UiAsyncButton<TData> extends StatefulWidget {
     this.child,
     this.color,
     this.textColor,
+    this.padding = const EdgeInsets.all(8),
   }) : super(key: key);
 
   @override
-  _UiAsyncButtonState<TData> createState() => _UiAsyncButtonState<TData>();
+  UiAsyncButtonState<TData> createState() => UiAsyncButtonState<TData>();
 }
 
-class _UiAsyncButtonState<TData> extends State<UiAsyncButton<TData>> {
-  EButtonState _state = EButtonState.Normal;
+class UiAsyncButtonState<TData> extends State<UiAsyncButton<TData>> {
+  EButtonState _state = EButtonState.normal;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      child: setUpButtonChild(),
       style: TextButton.styleFrom(
         backgroundColor: widget.color,
         foregroundColor: widget.textColor,
         // backgroundColor: Colors.blue,
-        padding: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
+        padding: widget.padding,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5),
         ),
       ),
-      onPressed: widget.onExecute == null
-          ? null
-          : () async {
-              if (_state == EButtonState.Running) {
-                return;
-              }
-
-              setState(
-                () {
-                  _state = EButtonState.Running;
-                },
-              );
-
-              final args = ActionCancelEventsArgs<TData>();
-              await widget.onExecute!(this, args);
-
-              setState(
-                () {
-                  _state =
-                      args.cancel ? EButtonState.Fail : EButtonState.Success;
-                },
-              );
-
-              await Future.delayed(Duration(milliseconds: 850));
-
-              if (args.cancel) {
-                widget.onFail?.call(args.data);
-              } else {
-                widget.onSuccess?.call(args.data!);
-              }
-            },
+      onPressed: widget.onExecute == null ? null : _onPressed,
+      child: _setupButtonChild(),
     );
   }
 
-  Widget setUpButtonChild() {
-    if (_state == EButtonState.Normal) {
+  void _onPressed() async {
+    if (_state == EButtonState.running) {
+      return;
+    }
+
+    setState(
+      () {
+        _state = EButtonState.running;
+      },
+    );
+
+    final args = ActionCancelEventsArgs<TData>();
+    await widget.onExecute!(this, args);
+
+    setState(
+      () {
+        _state = args.cancel ? EButtonState.fail : EButtonState.success;
+      },
+    );
+
+    await Future.delayed(const Duration(milliseconds: 850));
+
+    if (args.cancel) {
+      widget.onFail?.call(args.data);
+    } else {
+      widget.onSuccess?.call(args.data as TData);
+    }
+  }
+
+  Widget _setupButtonChild() {
+    if (_state == EButtonState.normal) {
       return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             width: 14,
             height: 20,
           ),
           widget.child ?? Container(),
-          SizedBox(
+          const SizedBox(
             width: 14,
           ),
         ],
       );
-    } else if (_state == EButtonState.Running) {
+    } else if (_state == EButtonState.running) {
       return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
+          const SizedBox(
+            width: 8,
+          ),
+          const SizedBox(
+            width: 20,
+            height: 20,
             child: CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
             ),
-            width: 20,
-            height: 20,
           ),
-          SizedBox(
-            width: 8,
-          ),
-          widget.child ?? Container()
-        ],
-      );
-    } else {
-      return Row(
-        children: [
-          Container(
-            child: Icon(
-                _state == EButtonState.Success ? Icons.check : Icons.error,
-                color: widget.textColor),
-            width: 20,
-            height: 20,
-          ),
-          SizedBox(
+          const SizedBox(
             width: 8,
           ),
           widget.child ?? Container()
         ],
       );
     }
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: 20,
+          height: 20,
+          child: Icon(
+            _state == EButtonState.success //
+                ? Icons.check
+                : Icons.error,
+            color: widget.textColor,
+          ),
+        ),
+        const SizedBox(
+          width: 8,
+        ),
+        widget.child ?? Container()
+      ],
+    );
   }
 }

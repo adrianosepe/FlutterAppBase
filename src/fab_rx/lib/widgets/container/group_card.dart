@@ -7,14 +7,14 @@ class UiGroupCard extends UiView {
   final String? subHeader;
   final List<Widget> children;
 
-  UiGroupCard({
-    Key? key,
+  const UiGroupCard({
+    super.key,
     required this.iconData,
     required this.header,
     this.subHeader,
     required this.children,
     this.iconSize,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

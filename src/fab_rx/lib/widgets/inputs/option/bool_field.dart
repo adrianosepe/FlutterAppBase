@@ -9,7 +9,7 @@ class UiBoolField extends UiPrimitiveField<bool> {
   const UiBoolField({
     Key? key,
     required property,
-    this.style = EBoolStyle.Switch,
+    this.style = EBoolStyle.switchStyle,
     this.labelText,
     this.checkedTextStyle,
     this.uncheckedTextStyle,
@@ -21,14 +21,14 @@ class UiBoolField extends UiPrimitiveField<bool> {
   @override
   Widget builder(BuildContext context, AsyncSnapshot<bool?> snapshot) {
     switch (style) {
-      case EBoolStyle.Switch:
+      case EBoolStyle.switchStyle:
         return ui.render.renderSwitch(
           context: context,
           property: property,
           labelText: labelText,
           snapshot: snapshot,
         );
-      case EBoolStyle.Checkbox:
+      case EBoolStyle.checkboxStyle:
         return ui.render.renderCheckbox(
           context: context,
           property: property,
@@ -42,6 +42,6 @@ class UiBoolField extends UiPrimitiveField<bool> {
 }
 
 enum EBoolStyle {
-  Switch,
-  Checkbox,
+  switchStyle,
+  checkboxStyle,
 }

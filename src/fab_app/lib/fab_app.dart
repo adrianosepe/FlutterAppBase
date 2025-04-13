@@ -3,19 +3,19 @@ library fab_app;
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:fluttertoast/fluttertoast.dart' as ft;
+
+import 'package:http/http.dart' as http;
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:fab_app/ui/interaction/selection_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:fluttertoast/fluttertoast.dart' as ft;
-
 import 'package:fab_lib/fab_lib.dart';
 import 'package:gap/gap.dart';
 
-import 'package:http/http.dart';
-import 'package:http/http.dart' as http;
 import 'package:rxdart/rxdart.dart';
 import 'package:sn_progress_dialog/progress_dialog.dart';
 

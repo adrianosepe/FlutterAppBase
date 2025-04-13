@@ -1,12 +1,16 @@
 part of fab_app;
 
-abstract class BaseEnvironment<TNav extends INavigation, TUiSettings extends IUiSettings, THdi extends IHdi> implements IEnvironment {
+abstract class BaseEnvironment<TNav extends INavigation, TUiSettings extends IUiSettings, THdi extends IHdi>
+    implements IEnvironment {
   late TNav _nav;
   late TUiSettings _ui;
   late THdi _hdi;
 
+  @override
   TNav get nav => _nav;
+  @override
   TUiSettings get ui => _ui;
+  @override
   THdi get hdi => _hdi;
 
   Future<void> init() async {
@@ -19,15 +23,11 @@ abstract class BaseEnvironment<TNav extends INavigation, TUiSettings extends IUi
     await internalInitialize();
   }
 
-  @protected
   Future<TNav> internalCreateNavigation();
 
-  @protected
   Future<TUiSettings> internalCreateUiSettings();
 
-  @protected
   Future<THdi> internalCreateHdi();
 
-  @protected
   Future<void> internalInitialize();
 }

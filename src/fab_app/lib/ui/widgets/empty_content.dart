@@ -56,11 +56,11 @@ class EmptyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (state) {
-      case EEmptyState.WithError:
+      case EEmptyState.withError:
         return buildError(context);
-      case EEmptyState.Empty:
-      case EEmptyState.WaitingReload:
-      case EEmptyState.Loading:
+      case EEmptyState.empty:
+      case EEmptyState.waitingReload:
+      case EEmptyState.loading:
         return buildEmpty(context);
 
       default:
@@ -123,14 +123,16 @@ class EmptyView extends StatelessWidget {
       list.add(const Gap(4));
     }
 
-    if (state == EEmptyState.WaitingReload) {
-      list.add(ElevatedButton(
-        onPressed: emptyPressed,
-        child: emptyButtonChild ?? const Text('Recarregar'),
-        style: emptyButtonStyle ?? (buttonStyle ?? (ElevatedButton.styleFrom())),
-      ));
-    } else if (state == EEmptyState.Loading) {
-      list.add(CircularProgressIndicator());
+    if (state == EEmptyState.waitingReload) {
+      list.add(
+        ElevatedButton(
+          onPressed: emptyPressed,
+          style: emptyButtonStyle ?? (buttonStyle ?? (ElevatedButton.styleFrom())),
+          child: emptyButtonChild ?? const Text('Recarregar'),
+        ),
+      );
+    } else if (state == EEmptyState.loading) {
+      list.add(const CircularProgressIndicator());
     }
 
     return list;
@@ -157,38 +159,38 @@ class EmptyView extends StatelessWidget {
     }
     list.add(ElevatedButton(
       onPressed: errorPressed,
-      child: errorButtonChild ??
-          const Text(
-            'Tentar Novamente',
-          ),
       style: errorButtonStyle ?? (buttonStyle ?? (ElevatedButton.styleFrom())),
+      child: errorButtonChild ?? const Text('Tentar Novamente'),
     ));
 
     return list;
   }
 
-  ///添加加载子组件列表
   List<Widget> addLoadingChildren(BuildContext context) {
     final list = <Widget>[];
 
-    list.add(loadingWidget ??
-        SizedBox(
-          child: const CircularProgressIndicator(),
-          height: loadingSize,
-          width: loadingSize,
-        ));
+    list.add(
+      loadingWidget ??
+          SizedBox(
+            height: loadingSize,
+            width: loadingSize,
+            child: const CircularProgressIndicator(),
+          ),
+    );
+
     if (loadingTitle != null) {
       list.add(const Gap(4));
       list.add(loadingTitle!);
     }
+
     return list;
   }
 }
 
 enum EEmptyState {
-  None,
-  WithError,
-  Empty,
-  WaitingReload,
-  Loading,
+  none,
+  withError,
+  empty,
+  waitingReload,
+  loading,
 }

@@ -1,7 +1,7 @@
 part of fab_rx;
 
 class ImageProperty extends Property<String> {
-  static const image_base64 = 'data:image/png;base64';
+  static const imageBase64 = 'data:image/png;base64';
 
   ImageProperty({
     String? label,
@@ -26,6 +26,6 @@ class ImageProperty extends Property<String> {
   void write(Uint8List bytes) {
     String img64 = base64Encode(bytes);
 
-    setter('$image_base64, $img64');
+    setter('$imageBase64, $img64');
   }
 }

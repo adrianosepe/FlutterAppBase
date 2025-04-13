@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "Application",
+			"path": "src/fab_app"
+		},
+		{
+			"name": "Library",
+			"path": "src/fab_lib"
+		},
+		{
+			"name": "Rx",
+			"path": "src/fab_rx"
+		}
+	],
+	"settings": {}
+}

@@ -18,7 +18,7 @@ class UiMaskField extends UiPrimitiveField<String> {
     this.keyboardType,
     this.inputFormatters,
   }) : super(key: key, property: property) {
-    controller.mask = this.mask;
+    controller.mask = mask;
   }
 
   @override

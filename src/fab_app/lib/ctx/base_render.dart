@@ -27,7 +27,7 @@ class BaseRender extends BaseContext implements IRender {
       keyboardType: keyboardType,
       obscureText: obscureText,
       obscuringCharacter: obscuringCharacter,
-      style: TextStyle(fontSize: 20),
+      style: const TextStyle(fontSize: 20),
       textAlign: textAlign,
       maxLength: maxLength,
       decoration: InputDecoration(
@@ -70,7 +70,7 @@ class BaseRender extends BaseContext implements IRender {
         return ui.render.renderContainer(
           child: Row(
             children: [
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Expanded(
@@ -82,7 +82,7 @@ class BaseRender extends BaseContext implements IRender {
                   isExpanded: true,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
             ],
@@ -108,27 +108,27 @@ class BaseRender extends BaseContext implements IRender {
         return DropdownSearch<T>(
           selectedItem: snapshot.data,
           onChanged: property.setter,
-          items: snapshotDS.data ?? <T>[],
-          mode: Mode.BOTTOM_SHEET,
-          showSearchBox: isSearchable,
-          focusNode: HandleFocusNode.handle(isReadOnly: property.isReadOnly),
-          showAsSuffixIcons: false,
+          //items: snapshotDS.data ?? <T>[],
+          // mode: Mode.BOTTOM_SHEET,
+          // showSearchBox: isSearchable,
+          // focusNode: HandleFocusNode.handle(isReadOnly: property.isReadOnly),
+          // showAsSuffixIcons: false,
           dropdownBuilder: (context, selectedItem) {
             return Text(
               selectedItem?.toString() ?? XString.empty,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: 20),
             );
           },
-          dropdownSearchBaseStyle: const TextStyle(fontSize: 20),
-          dropdownSearchDecoration: InputDecoration(
-            labelText: labelText ?? property.label,
-            hintText: hintText ?? property.hint,
-            errorText: snapshot.error?.toString(),
-            contentPadding: const EdgeInsets.fromLTRB(20.0, 3.0, 20.0, 3.0),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
-            ),
-          ),
+          // dropdownSearchBaseStyle: const TextStyle(fontSize: 20),
+          // dropdownSearchDecoration: InputDecoration(
+          //   labelText: labelText ?? property.label,
+          //   hintText: hintText ?? property.hint,
+          //   errorText: snapshot.error?.toString(),
+          //   contentPadding: const EdgeInsets.fromLTRB(20.0, 3.0, 20.0, 3.0),
+          //   border: OutlineInputBorder(
+          //     borderRadius: BorderRadius.circular(5),
+          //   ),
+          // ),
         );
       },
     );
@@ -154,7 +154,7 @@ class BaseRender extends BaseContext implements IRender {
       subtitle: snapshot.hasError
           ? Text(
               snapshot.error.toString(),
-              style: TextStyle(color: Colors.red),
+              style: const TextStyle(color: Colors.red),
               overflow: TextOverflow.ellipsis,
               maxLines: 3,
             )
@@ -173,30 +173,37 @@ class BaseRender extends BaseContext implements IRender {
   }) {
     final style = property.value ?? false
         ? checkedTextStyle ??
-            TextStyle(
+            const TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.black,
             )
         : uncheckedTextStyle ??
-            TextStyle(
+            const TextStyle(
               fontWeight: FontWeight.bold,
               color: Color(0xFFEE3126),
             );
 
-    return Row(
-      children: [
-        Expanded(
-          child: Text(
-            labelText ?? property.label ?? XString.empty,
-            style: style,
-          ),
-        ),
-        Checkbox(
-          value: snapshot.data ?? false,
-          onChanged: property.setter,
-        )
-      ],
-    );
+    final hasText = property.label != null;
+
+    return hasText
+        ? Row(
+            children: [
+              Expanded(
+                child: Text(
+                  labelText ?? property.label ?? XString.empty,
+                  style: style,
+                ),
+              ),
+              Checkbox(
+                value: snapshot.data ?? false,
+                onChanged: property.setter,
+              )
+            ],
+          )
+        : Checkbox(
+            value: snapshot.data ?? false,
+            onChanged: property.setter,
+          );
   }
 
   @override
@@ -225,7 +232,7 @@ class BaseRender extends BaseContext implements IRender {
   }) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        minimumSize: Size.fromHeight(50),
+        minimumSize: const Size.fromHeight(50),
         backgroundColor: color ?? ui.sty.primaryColor,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -278,7 +285,7 @@ class BaseRender extends BaseContext implements IRender {
     required Widget child,
   }) {
     return Container(
-      decoration: ShapeDecoration(
+      decoration: const ShapeDecoration(
         shape: RoundedRectangleBorder(
           side: BorderSide(width: 1.0, style: BorderStyle.solid, color: Colors.black45),
           borderRadius: BorderRadius.all(Radius.circular(5)),

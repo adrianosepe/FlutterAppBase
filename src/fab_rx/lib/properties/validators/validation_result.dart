@@ -1,13 +1,13 @@
 part of fab_rx;
 
 class ValidationResult {
-  var _errors = <String>[];
+  final _errors = <String>[];
 
   void add(String error) {
     _errors.add(error);
   }
 
-  bool get success => _errors.length == 0;
+  bool get success => _errors.isEmpty;
 
   bool get fail => !success;
   String get failInfo => fail ? 'Há ${_errors.length} críticas, verifique!' : XString.empty;

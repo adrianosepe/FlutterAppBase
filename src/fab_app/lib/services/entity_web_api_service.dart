@@ -32,7 +32,8 @@ abstract class EntityWebApiService extends BaseContext {
     );
   }
 
-  Future<TypedResult<TModel>> internalPostSingleExecute<TModel>(String url, Map<String, dynamic>? body, Func1<Map<String, dynamic>, TModel> translate, {String? token}) {
+  Future<TypedResult<TModel>> internalPostSingleExecute<TModel>(String url, Map<String, dynamic>? body, Func1<Map<String, dynamic>, TModel> translate,
+      {String? token}) {
     return _internalDecodeSingle(
       () => http.post(
         Uri.parse(url),
@@ -83,7 +84,7 @@ abstract class EntityWebApiService extends BaseContext {
     );
   }
 
-  Future<Result> internalPostFormMultipartExecute(String url, {List<MultipartFile>? files, Map<String, String>? body, String? token}) {
+  Future<Result> internalPostFormMultipartExecute(String url, {List<http.MultipartFile>? files, Map<String, String>? body, String? token}) {
     return _internalDecode(
       () async {
         final request = http.MultipartRequest('POST', Uri.parse(url));
@@ -107,7 +108,7 @@ abstract class EntityWebApiService extends BaseContext {
     );
   }
 
-  Future<TypedResult<TModel>> _internalDecodeSingle<TModel>(Func<Future<Response>> funcExecute, Func1<Map<String, dynamic>, TModel> translate) async {
+  Future<TypedResult<TModel>> _internalDecodeSingle<TModel>(Func<Future<http.Response>> funcExecute, Func1<Map<String, dynamic>, TModel> translate) async {
     try {
       if (!await _tryOverNetwork()) {
         return TypedResult.error('Falta de conectividade, por favor verifique a Internet.');
@@ -134,7 +135,7 @@ abstract class EntityWebApiService extends BaseContext {
     }
   }
 
-  Future<Result> _internalDecode<TModel>(Func<Future<Response>> funcExecute) async {
+  Future<Result> _internalDecode<TModel>(Func<Future<http.Response>> funcExecute) async {
     try {
       if (!await _tryOverNetwork()) {
         return Result.error('Falta de conectividade, por favor verifique a Internet.');
@@ -161,7 +162,7 @@ abstract class EntityWebApiService extends BaseContext {
     }
   }
 
-  Future<TypedResult<List<TModel>>> _internalDecodeMany<TModel>(Func<Future<Response>> funcExecute, Func1<Map<String, dynamic>, TModel> translate) async {
+  Future<TypedResult<List<TModel>>> _internalDecodeMany<TModel>(Func<Future<http.Response>> funcExecute, Func1<Map<String, dynamic>, TModel> translate) async {
     try {
       if (!await _tryOverNetwork()) {
         return TypedResult.error('Falta de conectividade, por favor verifique a Internet.');

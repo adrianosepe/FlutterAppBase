@@ -21,7 +21,7 @@ class XFlow {
     try {
       action();
     } catch (ex) {
-      print(ex.toString());
+      debugPrint(ex.toString());
     }
   }
 
@@ -29,7 +29,7 @@ class XFlow {
     try {
       await action();
     } catch (ex) {
-      print(ex.toString());
+      debugPrint(ex.toString());
     }
   }
 }

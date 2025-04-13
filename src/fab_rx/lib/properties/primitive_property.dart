@@ -13,7 +13,9 @@ class DateTimeProperty extends Property<DateTime> {
 }
 
 class StringProperty extends Property<String> implements IMaxLenght {
+  @override
   int? maxLength;
+
   StringProperty({
     String? value,
     String? label,
@@ -48,6 +50,9 @@ class IntProperty extends Property<int> {
           isReadOnly: isReadOnly,
           transformer: transformer,
         );
+
+  void increment() => value = (value ?? 0) + 1;
+  void decrement() => value = (value ?? 0) - 1;
 }
 
 class DoubleProperty extends Property<double> {

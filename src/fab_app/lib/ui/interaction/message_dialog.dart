@@ -105,7 +105,7 @@ class MessageDialog {
       textColor: Colors.white,
     );
   }
-
+  
   static _createMessageContent(
     BuildContext context,
     String message,

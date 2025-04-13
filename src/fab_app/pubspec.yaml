@@ -22,6 +22,7 @@ dependencies:
   gap: ^3.0.1
   dropdown_search: ^2.0.1
   fluttertoast: ^8.0.8
+  motion_toast: ^2.6.5
   sn_progress_dialog: ^1.0.3
   connectivity_plus: ^2.3.0
 

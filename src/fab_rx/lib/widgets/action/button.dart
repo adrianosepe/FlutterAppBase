@@ -9,7 +9,7 @@ class UiButton extends UiView {
     Key? key,
     required this.text,
     required this.onPressed,
-    this.action = EAppAction.Primary,
+    this.action = EAppAction.primary,
   }) : super(key: key);
 
   @override

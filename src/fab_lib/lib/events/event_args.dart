@@ -17,4 +17,4 @@ class ActionCancelEventsArgs<TData> extends EventArgs {
   ActionCancelEventsArgs({this.data});
 }
 
-typedef ActionCancelEventHandler<TData> = Future<Null> Function(Object sender, ActionCancelEventsArgs<TData> args);
+typedef ActionCancelEventHandler<TData> = Future<void> Function(Object sender, ActionCancelEventsArgs<TData> args);

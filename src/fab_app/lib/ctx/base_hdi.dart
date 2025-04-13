@@ -98,7 +98,7 @@ class BaseHdi extends BaseContext implements IHdi {
     _pd!.show(
       max: 50,
       msg: message ?? XString.empty,
-      barrierColor: Color(0x55212121),
+      barrierColor: const Color(0x55212121),
     );
 
     return Future.value();

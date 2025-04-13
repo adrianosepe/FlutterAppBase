@@ -6,13 +6,13 @@ class UiCard extends UiView {
   final EdgeInsetsGeometry? margin;
   final EdgeInsetsGeometry? padding;
 
-  UiCard({
-    Key? key,
+  const UiCard({
+    super.key,
     required this.child,
     this.color,
     this.margin,
     this.padding,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

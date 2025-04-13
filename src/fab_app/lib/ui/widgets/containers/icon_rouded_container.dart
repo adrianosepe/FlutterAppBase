@@ -4,7 +4,7 @@ class UiIconRoudedContainer extends UiView {
   final Widget child;
   final IconData icon;
 
-  UiIconRoudedContainer({
+  const UiIconRoudedContainer({
     required this.child,
     required this.icon,
     Key? key,
@@ -21,12 +21,12 @@ class UiIconRoudedContainer extends UiView {
         borderRadius: BorderRadius.circular(32.0),
       ),
       child: Row(
-        children: <Widget>[
+        children: [
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
             child: Icon(
-              this.icon,
               color: Colors.grey,
+              icon,
             ),
           ),
           Container(

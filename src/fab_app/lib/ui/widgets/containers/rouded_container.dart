@@ -3,7 +3,7 @@ part of fab_app;
 class UiRoudedContainer extends UiView {
   final Widget child;
 
-  UiRoudedContainer({
+  const UiRoudedContainer({
     Key? key,
     required this.child,
   }) : super(key: key);
@@ -18,7 +18,7 @@ class UiRoudedContainer extends UiView {
         ),
         borderRadius: BorderRadius.circular(5.0),
       ),
-      child: this.child,
+      child: child,
     );
   }
 }

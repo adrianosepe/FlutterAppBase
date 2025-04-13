@@ -1,6 +1,7 @@
 import 'package:fab_lib/fab_lib.dart';
 
 class GrappTecResultFactory extends ResultFactory {
+  @override
   List<ResultInfo>? readDetails(Map<String, dynamic> map) {
     return map['details'] != null ? List<ResultInfo>.from(map['details']?.map((x) => ResultInfo.fromMap(x))) : null;
   }

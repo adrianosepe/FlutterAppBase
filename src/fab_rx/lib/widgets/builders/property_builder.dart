@@ -8,7 +8,7 @@ class UiPropertyBuilder<T> extends UiView {
   final AsyncWidgetBuilder<T?> builder;
 
   const UiPropertyBuilder({
-    Key? key,
+    super.key,
     required this.property,
     required this.builder,
   });

@@ -10,21 +10,26 @@ class JsonStoreProperty<T> {
 
   JsonStoreProperty(this._store, this.name, this.toJson, this.fromJson, {this.defValue});
 
-  T? get value => XFlow.tryGet<T?>(
-        () {
-          final s = _store.getString(name);
-          if (s == null) {
-            return defValue;
-          }
+  T? get value {
+    return XFlow.tryGet<T?>(
+      () {
+        final s = _store.getString(name);
+        if (s == null) {
+          return defValue;
+        }
 
-          return fromJson(s);
-        },
-      );
-  set value(T? v) => XFlow.ensure(
-        () {
-          final s = toJson(v);
+        return fromJson(s);
+      },
+    );
+  }
 
-          _store.setString(name, s);
-        },
-      );
+  set value(T? v) {
+    XFlow.ensure(
+      () {
+        final s = toJson(v);
+
+        _store.setString(name, s);
+      },
+    );
+  }
 }

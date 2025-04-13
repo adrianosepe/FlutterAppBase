@@ -1,10 +1,10 @@
 part of fab_rx;
 
 class ModelValidators {
-  static String _phonePattern = "^\\([1-9]{2}\\) [0-9]{4}\\-[0-9]{4}\$";
-  static String _cellphonePattern = "^\\([1-9]{2}\\) 9[7-9]{1}[0-9]{3}\\-[0-9]{4}\$";
-  static String _emailPattern = "^[a-zA-Z0-9.a-zA-Z0-9.!#\$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-  static String _mercosulPlacaPattern = "[a-zA-Z]{3}-?[0-9][a-zA-Z0-9][0-9]{2}";
+  static const String _phonePattern = "^\\([1-9]{2}\\) [0-9]{4}\\-[0-9]{4}\$";
+  static const String _cellphonePattern = "^\\([1-9]{2}\\) 9[7-9]{1}[0-9]{3}\\-[0-9]{4}\$";
+  static const String _emailPattern = "^[a-zA-Z0-9.a-zA-Z0-9.!#\$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+.[a-zA-Z]+";
+  static const String _mercosulPlacaPattern = "[a-zA-Z]{3}-?[0-9][a-zA-Z0-9][0-9]{2}";
 
   static ValidationResult begin({ValidationResult? validations}) => validations ?? ValidationResult();
 
@@ -73,15 +73,15 @@ class ModelValidators {
     if (XString.isNullOrEmpty(value)) {
       return null;
     }
-    return XDateTime.isValid(value, EDateTimeFormat.Date) ? null : 'Data inválida';
+    return XDateTime.isValid(value, EDateTimeFormat.date) ? null : 'Data inválida';
   }
 
   static String? isLocationValid(LocationData? location, ELocationRestrict restrict) {
-    if (restrict == ELocationRestrict.State && (location == null || location.state == null)) {
+    if (restrict == ELocationRestrict.state && (location == null || location.state == null)) {
       return 'Selecione o estado';
     }
 
-    if (restrict == ELocationRestrict.StateAndCity && (location == null || location.state == null)) {
+    if (restrict == ELocationRestrict.stateAndCity && (location == null || location.state == null)) {
       return 'Selecione o estado/cidade';
     }
 
@@ -124,4 +124,7 @@ class ModelValidators {
   static bool _match(String pattern, String value) => RegExp(pattern).hasMatch(value);
 }
 
-enum ELocationRestrict { State, StateAndCity }
+enum ELocationRestrict {
+  state,
+  stateAndCity,
+}

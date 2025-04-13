@@ -13,6 +13,7 @@ abstract class BaseBloc extends BaseContext {
     _initiated = true;
 
     internalInit();
+    internalBindEvents();
   }
 
   void dispose() => internalDispose();
@@ -24,6 +25,9 @@ abstract class BaseBloc extends BaseContext {
 
   @protected
   void internalInit() {}
+
+  @protected
+  void internalBindEvents() {}
 
   @protected
   void internalDispose() {}

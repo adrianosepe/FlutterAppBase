@@ -14,7 +14,7 @@ class Transformers {
   });
 
   static final validatePassword = StreamTransformer<String, String>.fromHandlers(handleData: (password, sink) {
-    if (password.length > 0) {
+    if (password.isNotEmpty) {
       sink.add(password);
     } else {
       sink.addError('Por favor informe uma senha válida');

@@ -20,7 +20,7 @@ class MessageDialog {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('OK'),
+              child: const Text('OK'),
               onPressed: () => Navigator.of(context).pop(),
             ),
           ],
@@ -94,6 +94,18 @@ class MessageDialog {
     );
   }
 
+  static Future<bool?> toast(
+    String message, {
+    EToastLength length = EToastLength.long,
+  }) {
+    return ft.Fluttertoast.showToast(
+      msg: message,
+      toastLength: ft.Toast.values[EToastLength.values.indexOf(length)],
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+    );
+  }
+  
   static _createMessageContent(
     BuildContext context,
     String message,

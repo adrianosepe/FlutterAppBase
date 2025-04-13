@@ -18,16 +18,16 @@ class Result extends TypedResult<Object> {
     List<ResultInfo>? details,
   }) =>
       Result(
-        status: EResultStatus.Error,
+        status: EResultStatus.error,
         details: details,
         message: error,
       );
 
   static Result exception(Exception ex) => error(ex.toString());
 
-  static Result success({Object? data, String? message}) => Result(status: EResultStatus.Ok, message: message, data: data);
+  static Result success({Object? data, String? message}) => Result(status: EResultStatus.ok, message: message, data: data);
 
-  static Result warning(String alert) => Result(status: EResultStatus.Warning, message: alert);
+  static Result warning(String alert) => Result(status: EResultStatus.warning, message: alert);
 
   factory Result.fromMap(Map<String, dynamic> map) {
     final factory = TypedResult.factory;

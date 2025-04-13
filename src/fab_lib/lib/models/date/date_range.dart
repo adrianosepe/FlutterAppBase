@@ -40,10 +40,10 @@ class DateRange {
   String toString() => 'Interval(Start: $begin, End: $end)';
 
   @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
 
-    return o is DateRange && o.begin == begin && o.end == end;
+    return other is DateRange && other.begin == begin && other.end == end;
   }
 
   @override

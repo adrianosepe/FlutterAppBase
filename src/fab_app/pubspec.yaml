@@ -5,35 +5,35 @@ homepage: https://github.com/adrianosepe
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 environment:
-  sdk: '>=2.19.2 <3.0.0'
+  sdk: ">=2.19.2 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  intl: ^0.17.0
+  rxdart: ^0.27.7
 
+  http: ^1.0.0
+
+  gap: ^3.0.1
+  dropdown_search: ^2.0.1
+  fluttertoast: ^8.0.8
   motion_toast: ^2.6.5
   sn_progress_dialog: ^1.0.3
-  dropdown_search: ^2.0.1
-  gap: ^2.0.0
-
-  rxdart: ^0.27.7
+  connectivity_plus: ^2.3.0
 
   fab_lib:
     path: ../fab_lib
-  connectivity_plus: ^2.3.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  flutter_localizations:
-    sdk: flutter
+  flutter_lints: ^2.0.0
+  dependency_validator: ^3.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -44,12 +44,11 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  # To add Flutter specific assets to your application, add an assets section, 
+  # To add Flutter specific assets to your application, add an assets section,
   # like this:
   assets:
     - assets/
     - assets/images/
-
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -76,15 +75,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-
-
-  # This section identifies your Flutter project as a module meant for
-  # embedding in a native host app.  These identifiers should _not_ ordinarily
-  # be changed after generation - they are used to ensure that the tooling can
-  # maintain consistency when adding or modifying assets and plugins.
-  # They also do not have any bearing on your native host application's
-  # identifiers, which may be completely independent or the same as these.
-  module:
-    androidX: true
-    androidPackage: com.grapptec.fab.app
-    iosBundleIdentifier: com.grapptec.fab.app

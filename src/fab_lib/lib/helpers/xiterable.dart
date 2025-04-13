@@ -1,7 +1,7 @@
 part of fab_lib;
 
 class XIterable {
-  static Iterable<Pair<TKey, TValue>> groupBy<TKey, TValue>(Iterable<TValue> values, TKey func(TValue element)) sync* {
+  static Iterable<Pair<TKey, TValue>> groupBy<TKey, TValue>(Iterable<TValue> values, TKey Function(TValue element) func) sync* {
     var groups = coll.groupBy(values, func);
 
     for (final g in groups.keys) {

@@ -17,7 +17,7 @@ class Form {
     return this;
   }
 
-  void listAnyChange(void onData(Property property, dynamic data)) {
+  void listAnyChange(void Function(Property property, dynamic data) onData) {
     for (final p in _properties) {
       p.stream.listen((event) => onData(p, event));
     }

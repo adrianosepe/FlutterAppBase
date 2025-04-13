@@ -5,32 +5,31 @@ homepage: https://github.com/adrianosepe
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-environment:  
-  sdk: '>=2.19.2 <3.0.0'
+environment:
+  sdk: ">=2.19.2 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  provider: ^6.0.1  
+
   rxdart: ^0.27.3
+  provider: ^6.0.1
+
   extended_masked_text: ^2.3.1
-  intl: ^0.17.0
 
   fab_lib:
     path: ../fab_lib/
   fab_app:
     path: ../fab_app/
 
-  # mask_shifter: ^0.1.0
-  # flutter_masked_text: ^0.8.0
-  # smart_select: ^3.0.3
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^2.0.0
+  dependency_validator: ^3.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
